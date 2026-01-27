@@ -460,240 +460,157 @@ export function Header() {
           ? 'bg-background/95 backdrop-blur-custom shadow-2xl border-b border-border/50'
           : 'bg-background/90 backdrop-blur-custom'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-18">
-            {/* Logo - Enhanced Left Positioning */}
-            <div className="flex-shrink-0 flex items-center space-x-3 lg:space-x-4">
-              <Link href="/" className="flex items-center space-x-3 group">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="flex items-center space-x-2 group">
                 <div className="logo-glow relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <Image
                     src="/ncas-logo.png"
                     alt="NCAS Logo"
-                    width={48}
-                    height={48}
-                    className="object-contain transition-transform duration-300 group-hover:scale-110 relative z-10"
+                    width={40}
+                    height={40}
+                    className="object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
                 <div className="hidden sm:flex flex-col">
-                  <h1 className="text-lg lg:text-xl xl:text-2xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
+                  <h1 className="text-base lg:text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
                     NCAS
                   </h1>
-                  <p className="text-xs lg:text-sm text-muted-foreground transition-colors duration-300 group-hover:text-primary/70 leading-tight max-w-xs">
+                  <p className="text-[10px] lg:text-xs text-muted-foreground leading-tight">
                     National Centre for Advanced Studies
                   </p>
                 </div>
               </Link>
             </div>
 
-            {/* Desktop Navigation - Responsive */}
-            <nav className="hidden lg:flex flex-1 justify-center space-x-1 xl:space-x-2 mx-2 xl:mx-4 max-w-3xl">
-              {navigation.slice(0, 6).map((item, index) => (
-                <div key={item.name} className={`relative group stagger-${index}`}>
-                  {item.submenu ? (
-                    <div>
-                      <button
-                        className="nav-item relative flex items-center space-x-1 text-foreground hover:text-primary transition-all duration-300 text-xs xl:text-sm font-medium py-2 px-2 xl:px-3 rounded-md group-hover:scale-105 whitespace-nowrap"
-                        onMouseEnter={() => setActiveDropdown(item.name)}
-                        onMouseLeave={() => setActiveDropdown(null)}
-                      >
-                        <span className="relative z-10">{item.name}</span>
-                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
-                      </button>
-                      {activeDropdown === item.name && (
-                        <div
-                          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-64 xl:w-72 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
-                          onMouseEnter={() => setActiveDropdown(item.name)}
-                          onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                          <div className="p-2 max-h-96 overflow-y-auto">
-                            {item.submenu.map((subItem, subIndex) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                className={`dropdown-item block px-3 py-2 text-sm text-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 rounded-lg transition-all duration-300 transform hover:translate-x-1 stagger-sub-${subIndex}`}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="nav-item relative text-foreground hover:text-primary transition-all duration-300 text-xs xl:text-sm font-medium py-2 px-2 xl:px-3 rounded-md hover:scale-105 whitespace-nowrap"
-                    >
-                      <span className="relative z-10">{item.name}</span>
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </nav>
-
-            {/* Extra Navigation Items - Hidden on smaller screens */}
-            <nav className="hidden xl:flex flex-1 justify-center space-x-1 xl:space-x-2 mx-2 max-w-xs">
-              {navigation.slice(6).map((item, index) => (
-                <div key={item.name} className={`relative group stagger-${index + 6}`}>
-                  {item.submenu ? (
-                    <div>
-                      <button
-                        className="nav-item relative flex items-center space-x-1 text-foreground hover:text-primary transition-all duration-300 text-xs xl:text-sm font-medium py-2 px-2 xl:px-3 rounded-md group-hover:scale-105 whitespace-nowrap"
-                        onMouseEnter={() => setActiveDropdown(item.name)}
-                        onMouseLeave={() => setActiveDropdown(null)}
-                      >
-                        <span className="relative z-10">{item.name}</span>
-                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
-                      </button>
-                      {activeDropdown === item.name && (
-                        <div
-                          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-64 xl:w-72 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
-                          onMouseEnter={() => setActiveDropdown(item.name)}
-                          onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                          <div className="p-2 max-h-96 overflow-y-auto">
-                            {item.submenu.map((subItem, subIndex) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                className={`dropdown-item block px-3 py-2 text-sm text-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 rounded-lg transition-all duration-300 transform hover:translate-x-1 stagger-sub-${subIndex}`}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="nav-item relative text-foreground hover:text-primary transition-all duration-300 text-xs xl:text-sm font-medium py-2 px-2 xl:px-3 rounded-md hover:scale-105 whitespace-nowrap"
-                    >
-                      <span className="relative z-10">{item.name}</span>
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </nav>
-
-            {/* Search and Contact - Moved more to the left */}
-            <div className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0 button-container">
-              {/* Advanced Search Component */}
-              <AdvancedSearch />
-
-              {/* Contact Us Button - Desktop - More Visible (show earlier at md) */}
-              <div className="hidden md:block">
-                <Link
-                  href="/contact"
-                  className="contact-button relative text-white transition-all duration-300 text-sm font-medium py-2 px-4 rounded-lg whitespace-nowrap shadow-lg hover:shadow-xl"
-                >
-                  <span className="relative z-10">Contact Us</span>
-                </Link>
-              </div>
-
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="menu-button lg:hidden relative p-2 rounded-lg hover:bg-primary/10 transition-all duration-300"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <div className="relative z-10">
-                  {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                </div>
-              </Button>
-            </div>
-          </div>          {/* Mobile Navigation */}
-          <div className={`lg:hidden transition-all duration-500 overflow-hidden ${
-            isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-            <div className="px-4 pt-4 pb-6 space-y-1 bg-gradient-to-b from-background/95 to-background/90 backdrop-blur-custom border-t border-border/50 rounded-b-xl shadow-xl mobile-menu-scroll">
-              {/* Mobile Search */}
-              <div className="mb-4">
-                <Button
-                  variant="outline"
-                  className="w-full flex items-center justify-center space-x-2 py-3 hover:bg-primary/10 transition-all duration-300"
-                  onClick={() => {
-                    // Trigger search modal for mobile
-                    const searchElement = document.querySelector('[data-search-trigger]');
-                    if (searchElement) {
-                      (searchElement as HTMLElement).click();
-                    }
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  <Search className="h-4 w-4" />
-                  <span>Search NCAS</span>
-                </Button>
-              </div>
-
+            {/* Desktop Navigation - Single unified nav */}
+            <nav className="hidden lg:flex items-center space-x-1">
               {navigation.map((item, index) => (
-                <div key={item.name} className={`stagger-animation mobile-stagger-${index}`}>
+                <div key={item.name} className="relative group">
                   {item.submenu ? (
-                    <div>
+                    <div
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
                       <button
-                        className="flex items-center justify-between w-full px-3 py-2 text-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105"
-                        onClick={() => handleDropdownToggle(item.name)}
+                        className="nav-item relative flex items-center space-x-1 text-foreground hover:text-primary transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
                       >
-                        <span className="truncate">{item.name}</span>
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-300 flex-shrink-0 ${
-                            activeDropdown === item.name ? "rotate-180 text-primary" : ""
-                          }`}
-                        />
+                        <span>{item.name}</span>
+                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
                       </button>
                       {activeDropdown === item.name && (
-                        <div className="ml-4 mt-1 space-y-1 animate-in slide-in-from-left-4 duration-300">
-                          {item.submenu.map((subItem, subIndex) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.href}
-                              className={`dropdown-item block px-3 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 rounded-md transition-all duration-300 transform hover:translate-x-1 mobile-sub-stagger-${subIndex}`}
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
+                        <div
+                          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-64 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
+                        >
+                          <div className="p-2 max-h-80 overflow-y-auto">
+                            {item.submenu.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className="dropdown-item block px-3 py-2 text-sm text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
                   ) : (
                     <Link
                       href={item.href}
-                      className="block px-3 py-2 text-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:translate-x-1"
-                      onClick={() => setIsMenuOpen(false)}
+                      className="nav-item relative text-foreground hover:text-primary transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
                     >
                       {item.name}
                     </Link>
                   )}
                 </div>
               ))}
+            </nav>
 
-              {/* Mobile Contact Us */}
-              <div className="border-t border-border/50 pt-3 mt-3">
-                <Link
-                  href="/contact"
-                  className="contact-button block px-3 py-3 text-center text-white rounded-lg text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact Us
-                </Link>
-              </div>
+            {/* Right side: Search + Contact Us + Mobile Menu */}
+            <div className="flex items-center space-x-3">
+              {/* Search */}
+              <AdvancedSearch />
+
+              {/* Contact Us Button - Always visible on desktop */}
+              <Link
+                href="/contact"
+                className="hidden lg:inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+              >
+                Contact Us
+              </Link>
+
+              {/* Mobile menu button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="lg:hidden p-2 rounded-lg hover:bg-primary/10 transition-all duration-300"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
-          {/* Floating Contact button for small screens: always visible on mobile for quick access */}
-          <div className="md:hidden fixed bottom-4 right-4 z-50">
-            <Link
-              href="/contact"
-              aria-label="Contact us"
-              className="floating-contact inline-flex items-center justify-center p-3 rounded-full text-white shadow-lg transition-transform duration-150 hover:scale-105"
-            >
-              <span className="sr-only">Contact Us</span>
-              {/* simple label for small screens */}
-              <span className="text-sm font-semibold">Contact</span>
-            </Link>
+        </div>        {/* Mobile Navigation */}
+        <div className={`lg:hidden transition-all duration-500 overflow-hidden ${
+          isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="px-4 pt-4 pb-6 space-y-1 bg-background/95 backdrop-blur-md border-t border-border/50 shadow-xl mobile-menu-scroll">
+            {navigation.map((item, index) => (
+              <div key={item.name}>
+                {item.submenu ? (
+                  <div>
+                    <button
+                      className="flex items-center justify-between w-full px-3 py-2.5 text-foreground hover:text-primary hover:bg-primary/5 rounded-lg text-sm font-medium transition-all duration-300"
+                      onClick={() => handleDropdownToggle(item.name)}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          activeDropdown === item.name ? "rotate-180 text-primary" : ""
+                        }`}
+                      />
+                    </button>
+                    {activeDropdown === item.name && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {item.submenu.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="block px-3 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-all duration-300"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="block px-3 py-2.5 text-foreground hover:text-primary hover:bg-primary/5 rounded-lg text-sm font-medium transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+
+            {/* Mobile Contact Us */}
+            <div className="border-t border-border/50 pt-4 mt-4">
+              <Link
+                href="/contact"
+                className="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
         </div>
       </header>
