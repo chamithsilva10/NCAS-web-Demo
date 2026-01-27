@@ -580,26 +580,8 @@ export function Header() {
 
             {/* Search and Contact - Moved more to the left */}
             <div className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0 button-container">
-              {/* Search Button - Always Visible and Prominent */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="search-button p-2 rounded-lg transition-all duration-300"
-                onClick={() => {
-                  // Trigger search modal - you might need to modify AdvancedSearch to expose this
-                  const searchElement = document.querySelector('[data-search-trigger]');
-                  if (searchElement) {
-                    (searchElement as HTMLElement).click();
-                  }
-                }}
-              >
-                <Search className="h-4 w-4" />
-              </Button>
-
               {/* Advanced Search Component */}
-              <div className="hidden lg:block">
-                <AdvancedSearch />
-              </div>
+              <AdvancedSearch />
 
               {/* Contact Us Button - Desktop - More Visible (show earlier at md) */}
               <div className="hidden md:block">

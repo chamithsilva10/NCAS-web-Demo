@@ -191,7 +191,7 @@ export function AdvancedSearch() {
       <Button
         variant="ghost"
         size="sm"
-        className="hidden sm:flex"
+        className="flex search-button p-2 rounded-lg transition-all duration-300"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Search className="h-4 w-4" />
