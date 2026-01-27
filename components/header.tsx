@@ -461,24 +461,24 @@ export function Header() {
           : 'bg-background/90 backdrop-blur-custom'
       }`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center space-x-2 group">
-                <div className="logo-glow relative">
-                  <Image
-                    src="/ncas-logo.png"
-                    alt="NCAS Logo"
-                    width={40}
-                    height={40}
-                    className="object-contain transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
+              <Link href="/" className="flex items-center space-x-3 group">
+                <Image
+                  src="/ncas-logo.png"
+                  alt="NCAS Logo"
+                  width={72}
+                  height={72}
+                  className="object-contain transition-transform duration-300 group-hover:scale-105"
+                  style={{ background: 'transparent' }}
+                  priority
+                />
                 <div className="hidden sm:flex flex-col">
-                  <h1 className="text-base lg:text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
+                  <h1 className="text-xl lg:text-2xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
                     NCAS
                   </h1>
-                  <p className="text-[10px] lg:text-xs text-muted-foreground leading-tight">
+                  <p className="text-xs lg:text-sm text-muted-foreground leading-tight max-w-[200px]">
                     National Centre for Advanced Studies
                   </p>
                 </div>
@@ -486,11 +486,12 @@ export function Header() {
             </div>
 
             {/* Desktop Navigation - Single unified nav */}
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center space-x-0.5">
               {navigation.map((item, index) => (
-                <div key={item.name} className="relative group">
+                <div key={item.name} className="relative">
                   {item.submenu ? (
                     <div
+                      className="relative"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
@@ -498,11 +499,13 @@ export function Header() {
                         className="nav-item relative flex items-center space-x-1 text-foreground hover:text-primary transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
                       >
                         <span>{item.name}</span>
-                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
+                        <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
                       </button>
+                      {/* Invisible bridge to prevent hover gap */}
+                      <div className="absolute top-full left-0 right-0 h-2" />
                       {activeDropdown === item.name && (
                         <div
-                          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-64 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
+                          className="absolute top-[calc(100%+0.5rem)] left-1/2 transform -translate-x-1/2 w-64 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
                         >
                           <div className="p-2 max-h-80 overflow-y-auto">
                             {item.submenu.map((subItem) => (
