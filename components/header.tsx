@@ -468,17 +468,17 @@ export function Header() {
                 <Image
                   src="/ncas-logo.png"
                   alt="NCAS Logo"
-                  width={72}
-                  height={72}
+                  width={80}
+                  height={80}
                   className="object-contain transition-transform duration-300 group-hover:scale-105"
                   style={{ background: 'transparent' }}
                   priority
                 />
                 <div className="hidden sm:flex flex-col">
-                  <h1 className="text-xl lg:text-2xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
+                  <h1 className="text-sm lg:text-base font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
                     NCAS
                   </h1>
-                  <p className="text-xs lg:text-sm text-muted-foreground leading-tight max-w-[200px]">
+                  <p className="text-[10px] lg:text-xs text-muted-foreground leading-tight max-w-[180px]">
                     National Centre for Advanced Studies
                   </p>
                 </div>
