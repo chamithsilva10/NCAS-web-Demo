@@ -1,6 +1,4 @@
 import { Metadata } from "next"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -383,8 +381,6 @@ export default function WorkshopsPage() {
           </div>
         </section>
       </main>
-
-            <Footer />
     </div>
   )
 }

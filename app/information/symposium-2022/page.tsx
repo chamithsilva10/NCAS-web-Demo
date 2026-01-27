@@ -1,5 +1,5 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -38,7 +38,6 @@ const photoGallery = [
 export default function Symposium2022Page() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <Badge className="mb-4">IRSSSH 2022</Badge>
@@ -131,7 +130,6 @@ export default function Symposium2022Page() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+      </div>
   )
 }

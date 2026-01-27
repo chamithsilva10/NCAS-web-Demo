@@ -1,5 +1,5 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Users, BookOpen, Award } from "lucide-react"
@@ -106,7 +106,6 @@ const colloquiumParticipants = [
 export default function ResearchColloquiumPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Research Colloquium 2025</h1>
@@ -192,7 +191,6 @@ export default function ResearchColloquiumPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+      </div>
   )
 }

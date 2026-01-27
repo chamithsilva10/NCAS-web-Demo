@@ -1,5 +1,5 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -99,7 +99,6 @@ const researchResources = [
 export default function ResearchOpportunitiesPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Research Opportunities</h1>
@@ -231,7 +230,6 @@ export default function ResearchOpportunitiesPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+      </div>
   )
 }

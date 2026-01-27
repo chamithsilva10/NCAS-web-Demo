@@ -1,5 +1,3 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -125,8 +123,6 @@ const recentAwards = [
 export default function PublicationsPage() {
   return (
     <div className="min-h-screen">
-      <Header />
-
       <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-16">
@@ -382,8 +378,6 @@ export default function PublicationsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
