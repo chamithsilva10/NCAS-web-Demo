@@ -1,0 +1,9 @@
+The following files could not be downloaded and need to be manually added:
+
+- LETTER-OF-INVITATIN-OVERSEAS-FELLOWS.pdf
+  Original URL: https://ncas.ac.lk/wp-content/uploads/2014/10/LETTER-OF-INVITATIN-OVERSEAS-FELLOWS_n_.pdf
+  Error: Failed to download https://ncas.ac.lk/wp-content/uploads/2014/10/LETTER-OF-INVITATIN-OVERSEAS-FELLOWS_n_.pdf: Status 404
+
+- NCAS-Grant-Scheme-for-supporting-2024.pdf
+  Original URL: https://ncas.ac.lk/wp-content/uploads/2024/02/Invitation-for-applications-for-NCAS-Grant-Scheme-for-supporting-2024new.pdf
+  Error: Failed to download https://ncas.ac.lk/wp-content/uploads/2024/02/Invitation-for-applications-for-NCAS-Grant-Scheme-for-supporting-2024new.pdf: Status 404
