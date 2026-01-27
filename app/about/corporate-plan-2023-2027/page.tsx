@@ -8,42 +8,42 @@ export default function CorporatePlan2023Page() {
     {
       title: "Corporate Plan 2023-2027",
       description: "NCAS Corporate Plan outlining organizational goals and development strategies for 2023-2027.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/CORPORATE-PLAN-2023-2027.pdf",
+      url: "/downloads/CORPORATE-PLAN-2023-2027.pdf",
       type: "Corporate Plan",
       year: "2023-2027"
     },
     {
       title: "Strategic Plan 2025-2029",
       description: "Strategic plan for NCAS covering the period 2025-2029 with key objectives and initiatives.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/STRATEGIC-PLAN-2025-2029.pdf",
+      url: "/downloads/STRATEGIC-PLAN-2025-2029.pdf",
       type: "Strategic Plan",
       year: "2025-2029"
     },
     {
       title: "Strategic Plan 2024-2028",
       description: "Comprehensive strategic plan outlining NCAS's vision and strategic direction for 2024-2028.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/Stratergic-Plan-2024.pdf",
+      url: "/downloads/Strategic-Plan-2024.pdf",
       type: "Strategic Plan",
       year: "2024-2028"
     },
     {
       title: "Action Plan 2025",
       description: "Detailed action plan for 2025 outlining specific activities and performance targets.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/ACTION-PLAN-2025.pdf",
+      url: "/downloads/ACTION-PLAN-2025.pdf",
       type: "Action Plan",
       year: "2025"
     },
     {
       title: "Performance Against Action Plan 2023",
       description: "Report on performance against the 2023 action plan with achievements and outcomes.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/PERFORMANCE-AGAINST-ACTION-PLAN-2023.pdf",
+      url: "/downloads/PERFORMANCE-AGAINST-ACTION-PLAN-2023.pdf",
       type: "Performance Report",
       year: "2023"
     },
     {
       title: "Master Procurement Plan 2025",
       description: "Master procurement plan for 2025 detailing procurement activities and requirements.",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf",
+      url: "/downloads/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf",
       type: "Procurement Plan",
       year: "2025"
     }

@@ -123,7 +123,7 @@ export default function VacanciesPage() {
                         Deadline: {job.deadline}
                       </div>
                       <Button asChild>
-                        <Link href="https://ncas.ac.lk/vacancies/" target="_blank">
+                        <Link href="/information/vacancies" target="_blank">
                           <ExternalLink className="h-4 w-4 mr-2" />
                           Apply Now
                         </Link>
@@ -235,7 +235,7 @@ export default function VacanciesPage() {
               please visit our official vacancies page.
             </p>
             <Button asChild size="lg">
-              <Link href="https://ncas.ac.lk/vacancies/" target="_blank">
+              <Link href="/information/vacancies" target="_blank">
                 <ExternalLink className="h-4 w-4 mr-2" />
                 View All Vacancies
               </Link>

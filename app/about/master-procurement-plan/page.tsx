@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { FileText, Download } from "lucide-react"
 
 export default function MasterProcurementPlanPage() {
-  const planUrl = "https://ncas.ac.lk/wp-content/uploads/2014/10/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf"
+  const planUrl = "/downloads/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf"
 
   return (
     <div className="min-h-screen bg-background">

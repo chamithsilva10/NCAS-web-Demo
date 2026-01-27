@@ -115,7 +115,7 @@ export default function ShortTermResearchGrantsPage() {
             <div className="text-center">
               <Button asChild className="bg-blue-600 hover:bg-blue-700">
                 <a
-                  href="https://ncas.ac.lk/wp-content/uploads/2025/03/APLLICATION-FOR-THE-SHORT-TERM-RESEARCH-GRANT.doc"
+                  href="/downloads/APLLICATION-FOR-THE-SHORT-TERM-RESEARCH-GRANT.doc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

@@ -8,7 +8,7 @@ export default function DirectorPage() {
   const currentDirector = {
     name: "Senior Professor (Mrs.) Prashanthi Narangoda",
     title: "Director, NCAS",
-    image: "https://ncas.ac.lk/wp-content/uploads/2023/05/IMG-20230206-WA00072.jpg",
+    image: "/images/director-image.jpg",
     email: "director@ncas.ac.lk",
     phone: "+94 11 2680849",
     office: "Director's Office, NCAS Building",

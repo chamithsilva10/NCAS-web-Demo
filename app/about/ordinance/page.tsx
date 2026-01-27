@@ -6,22 +6,22 @@ export default function OrdinancePage() {
   const ordinanceDocuments = [
     {
       title: "NCAS Ordinance No. 02 of 2005 - English Version",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/ncasordinance-English.pdf",
+      url: "/downloads/ncasordinance-English.pdf",
       language: "English",
     },
     {
       title: "NCAS Ordinance Amendments 2008 - English Version",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/Ncas_Ordinance_Amendments.pdf",
+      url: "/downloads/Ncas_Ordinance_Amendments.pdf",
       language: "English",
     },
     {
       title: "NCAS Ordinance No. 02 of 2005 - Sinhala Version",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/ncasordinance-Sinhala.pdf",
+      url: "/downloads/ncasordinance-Sinhala.pdf",
       language: "Sinhala",
     },
     {
       title: "NCAS Ordinance No. 02 of 2005 - Tamil Version",
-      url: "https://ncas.ac.lk/wp-content/uploads/2014/10/ncasordinance-Tamil.pdf",
+      url: "/downloads/ncasordinance-Tamil.pdf",
       language: "Tamil",
     },
   ]

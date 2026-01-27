@@ -12,37 +12,37 @@ export default function PartialFundingPage() {
             <div>
               <h3>Letter – Calling Applications</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/Grant-Application-2025-2nd-Round.pdf" download>Download</a>
+                <a href="/downloads/Grant-Application-2025-2nd-Round.pdf" download>Download</a>
               </Button>
             </div>
             <div>
               <h3>APPLICATION FORM -2025 – 2nd Round</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/NEW-APPLICATION-FORM-2025-2nd-Round.doc" download>Download</a>
+                <a href="/downloads/NEW-APPLICATION-FORM-2025-2nd-Round.doc" download>Download</a>
               </Button>
             </div>
             <div>
               <h3>APPLICATION CHECK LIST OVERSEAS</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/APPLICATION-CHECK-LIST-OVERSEAS.docx" download>Download</a>
+                <a href="/downloads/APPLICATION-CHECK-LIST-OVERSEAS.docx" download>Download</a>
               </Button>
             </div>
             <div>
               <h3>APPLICATION CHECK LIST LOCAL</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/APPLICATION-CHECK-LIST-LOCAL.docx" download>Download</a>
+                <a href="/downloads/APPLICATION-CHECK-LIST-LOCAL.docx" download>Download</a>
               </Button>
             </div>
             <div>
               <h3>Revised Guidelines for Postgraduate Grant Scheme</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/NCAS-guidelines-Version-04-05.08.2024.pdf" download>Download</a>
+                <a href="/downloads/NCAS-guidelines-Version-04-05.08.2024.pdf" download>Download</a>
               </Button>
             </div>
             <div>
               <h3>Tripartite Funding Agreement</h3>
               <Button asChild>
-                <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/Tripartite-Agreement-Version-04-05.08.2024.docx" download>Download</a>
+                <a href="/downloads/Tripartite-Agreement-Version-04-05.08.2024.docx" download>Download</a>
               </Button>
             </div>
           </div>

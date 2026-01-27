@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { FileText, Download } from "lucide-react"
 
 export default function StrategicPlan2025Page() {
-  const planUrl = "https://ncas.ac.lk/wp-content/uploads/2014/10/STRATEGIC-PLAN-2025-2029.pdf"
+  const planUrl = "/downloads/STRATEGIC-PLAN-2025-2029.pdf"
 
   return (
     <div className="min-h-screen bg-background">

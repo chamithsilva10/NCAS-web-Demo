@@ -86,7 +86,7 @@ export default function ShortTermGrantsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="flex items-center space-x-2">
-                  <a href="https://ncas.ac.lk/wp-content/uploads/2025/03/APLLICATION-FOR-THE-SHORT-TERM-RESEARCH-GRANT.doc" target="_blank" rel="noopener noreferrer">
+                  <a href="/downloads/APLLICATION-FOR-THE-SHORT-TERM-RESEARCH-GRANT.doc" target="_blank" rel="noopener noreferrer">
                     <Download className="h-4 w-4" />
                     <span>Download Application Form</span>
                   </a>

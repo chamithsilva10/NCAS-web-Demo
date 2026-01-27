@@ -27,7 +27,7 @@ const scholarships = [
     type: "Visiting Fellowship",
     description: "Fellowship for researchers from the Global South",
     deadline: "Ongoing",
-    link: "https://ncas.ac.lk/wp-content/uploads/2024/09/ANU-CASS-Global-South-Visiting-Fellowship.pdf",
+    link: "/downloads/ANU-CASS-Global-South-Visiting-Fellowship.pdf",
     content: "Content will be loaded from external source"
   },
   {
@@ -49,7 +49,7 @@ const scholarships = [
     type: "Masters Scholarship",
     description: "Scholarships for Masters Degree Programmes of Park Chung Hee School of Policy and Saemaul",
     deadline: "2025",
-    link: "https://ncas.ac.lk/scholarship-opportunities-for-masters-degree-programmes-of-park-chung-hee-school-of-policy-and-saemaul-at-yeungnam-university-in-the-republic-of-korea/",
+    link: "/grants/other-scholarships/yeungnam-university",
     content: "Scholarship opportunities for Masters Degree Programmes of Park Chung Hee School of Policy and Saemaul at Yeungnam University in the Republic of Korea. NCAS has shared information about scholarship opportunities available at Yeungnam University. For detailed information, please refer to the attached documents: Details for Scholarships-Yeungnam University, Scholarship Opportunities – Republic of Korea, and Letter sent to universities."
   },
   {
@@ -60,7 +60,7 @@ const scholarships = [
     type: "PhD Programme",
     description: "Doctoral programmes at the University of Szczecin",
     deadline: "2025",
-    link: "https://ncas.ac.lk/phd-opportunities-at-poland-doctoral-school-of-the-university-of-szczecin/",
+    link: "/grants/other-scholarships/szczecin-university",
     content: "Content will be loaded from external source"
   },
   {
@@ -82,7 +82,7 @@ const scholarships = [
     type: "Postgraduate Courses",
     description: "Development-related postgraduate courses (EPOS) 2022/2023",
     deadline: "2023",
-    link: "https://ncas.ac.lk/daad-development-related-postgraduate-courses-epos-2022-2023",
+    link: "/grants/other-scholarships/daad-epos",
     content: "Content will be loaded from external source"
   },
   {
@@ -104,7 +104,7 @@ const scholarships = [
     type: "Full Scholarship",
     description: "Full scholarships for international students",
     deadline: "2025",
-    link: "https://ncas.ac.lk/wp-content/uploads/2014/10/Embassy_Turkey-20230112_0024.pdf",
+    link: "/downloads/Embassy_Turkey-20230112_0024.pdf",
     content: "Content will be loaded from external source"
   },
   {
@@ -148,7 +148,7 @@ const scholarships = [
     type: "Masters & PhD",
     description: "Masters and PhD programmes for Sri Lankan students",
     deadline: "2025",
-    link: "https://ncas.ac.lk/wp-content/uploads/2014/10/Invitation-for-Sri-Lankan-Students-to-Applv-to-the-South-Ural-State-University-in-Russia.pdf",
+    link: "/downloads/South-Ural-State-University-Russia.pdf",
     content: "Content will be loaded from external source"
   },
   {

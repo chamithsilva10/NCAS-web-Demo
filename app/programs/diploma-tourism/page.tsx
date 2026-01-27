@@ -198,7 +198,7 @@ export default function DiplomaTourismPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
-              <Link href="https://ncas.ac.lk/latest_news/diploma-in-tourism-and-hospitality-management/" target="_blank">
+              <Link href="/programs/diploma-tourism" target="_blank">
                 <ExternalLink className="h-4 w-4 mr-2" />
                 Learn More
               </Link>

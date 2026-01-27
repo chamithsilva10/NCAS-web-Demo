@@ -40,7 +40,7 @@ export function AnnualSymposium() {
                     The deadline for submitting extended abstracts is now closed.
                   </p>
                   <Button asChild>
-                    <a href="https://ncas.ac.lk/symposium2025/" target="_blank" rel="noopener noreferrer">
+                    <a href="/information/symposium-2024" target="_blank" rel="noopener noreferrer">
                       Learn More
                     </a>
                   </Button>

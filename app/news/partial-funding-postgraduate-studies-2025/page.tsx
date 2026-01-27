@@ -35,7 +35,7 @@ export default function PartialFunding2025Page() {
                   <div className="space-y-3">
                     <Button asChild className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/Grant-Application-2025-2nd-Round.pdf"
+                        href="/downloads/Grant-Application-2025-2nd-Round.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
@@ -47,7 +47,7 @@ export default function PartialFunding2025Page() {
 
                     <Button asChild variant="outline" className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/NEW-APPLICATION-FORM-2025-2nd-Round.doc"
+                        href="/downloads/NEW-APPLICATION-FORM-2025-2nd-Round.doc"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
@@ -59,7 +59,7 @@ export default function PartialFunding2025Page() {
 
                     <Button asChild variant="outline" className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/APPLICATION-CHECK-LIST-OVERSEAS.docx"
+                        href="/downloads/APPLICATION-CHECK-LIST-OVERSEAS.docx"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
@@ -71,7 +71,7 @@ export default function PartialFunding2025Page() {
 
                     <Button asChild variant="outline" className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/APPLICATION-CHECK-LIST-LOCAL.docx"
+                        href="/downloads/APPLICATION-CHECK-LIST-LOCAL.docx"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
@@ -90,7 +90,7 @@ export default function PartialFunding2025Page() {
                   <div className="space-y-3">
                     <Button asChild variant="outline" className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/NCAS-guidelines-Version-04-05.08.2024.pdf"
+                        href="/downloads/NCAS-guidelines-Version-04-05.08.2024.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
@@ -102,7 +102,7 @@ export default function PartialFunding2025Page() {
 
                     <Button asChild variant="outline" className="w-full justify-start">
                       <a
-                        href="https://ncas.ac.lk/wp-content/uploads/2025/03/Tripartite-Agreement-Version-04-05.08.2024.docx"
+                        href="/downloads/Tripartite-Agreement-Version-04-05.08.2024.docx"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"

@@ -165,7 +165,7 @@ export default function ResearchPage() {
 
                   <div className="text-center">
                     <Button asChild size="lg" className="mb-6">
-                      <a href="https://ncas.ac.lk/wp-content/uploads/2014/10/application_form_pls_sem_ncas.doc" target="_blank" rel="noopener noreferrer">
+                      <a href="/downloads/application_form_pls_sem_ncas.doc" target="_blank" rel="noopener noreferrer">
                         <Download className="mr-2 h-5 w-5" />
                         Download Application Form
                       </a>

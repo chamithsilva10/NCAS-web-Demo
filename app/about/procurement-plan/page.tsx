@@ -12,7 +12,7 @@ const procurementPlans = [
     title: "Master Procurement Plan 2025",
     description: "Comprehensive procurement strategy for NCAS operations and development projects",
     status: "Current",
-    downloadUrl: "https://ncas.ac.lk/wp-content/uploads/2014/10/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf",
+    downloadUrl: "/downloads/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf",
     keyObjectives: [
       "Procurement of research equipment and software",
       "Library resource development",
@@ -99,7 +99,7 @@ export default function ProcurementPlanPage() {
               <Badge className="mb-4">Currently Active</Badge>
             </div>
             <Button asChild size="lg">
-              <Link href="https://ncas.ac.lk/wp-content/uploads/2014/10/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf" target="_blank">
+              <Link href="/downloads/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf" target="_blank">
                 <Download className="h-5 w-5 mr-2" />
                 Download PDF
               </Link>
@@ -240,7 +240,7 @@ export default function ProcurementPlanPage() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="https://ncas.ac.lk/wp-content/uploads/2014/10/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf" target="_blank">
+              <Link href="/downloads/MASTER-PROCUREMENT-PLAN-2025-SIGNED.pdf" target="_blank">
                 <ExternalLink className="h-4 w-4 mr-2" />
                 View Current Plan
               </Link>

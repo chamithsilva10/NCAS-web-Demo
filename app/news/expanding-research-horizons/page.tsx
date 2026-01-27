@@ -85,7 +85,7 @@ export default function ExpandingResearchHorizonsPage() {
             <div className="text-center">
               <Button asChild size="lg">
                 <a
-                  href="https://ncas.ac.lk/wp-content/uploads/2014/10/LETTER-OF-INVITATIN-OVERSEAS-FELLOWS_n_.pdf"
+                  href="/downloads/LETTER-OF-INVITATIN-OVERSEAS-FELLOWS.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

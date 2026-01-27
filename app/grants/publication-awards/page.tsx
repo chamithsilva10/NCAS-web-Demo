@@ -93,7 +93,7 @@ export default function PublicationAwardsPage() {
               </p>
               <div className="space-y-2">
                 <Button asChild className="w-full">
-                  <Link href="https://ncas.ac.lk/wp-content/uploads/2024/02/Invitation-for-applications-for-NCAS-Grant-Scheme-for-supporting-2024new.pdf" target="_blank">
+                  <Link href="/downloads/NCAS-Grant-Scheme-for-supporting-2024.pdf" target="_blank">
                     <Download className="h-4 w-4 mr-2" />
                     Download Guidelines (PDF)
                   </Link>
