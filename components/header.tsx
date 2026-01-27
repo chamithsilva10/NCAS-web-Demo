@@ -464,21 +464,21 @@ export function Header() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center space-x-3 group">
+              <Link href="/" className="flex items-center space-x-2 group">
                 <Image
                   src="/ncas-logo.png"
                   alt="NCAS Logo"
-                  width={80}
-                  height={80}
+                  width={140}
+                  height={140}
                   className="object-contain transition-transform duration-300 group-hover:scale-105"
                   style={{ background: 'transparent' }}
                   priority
                 />
                 <div className="hidden sm:flex flex-col">
-                  <h1 className="text-sm lg:text-base font-bold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
+                  <h1 className="text-[11px] lg:text-xs font-semibold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
                     NCAS
                   </h1>
-                  <p className="text-[10px] lg:text-xs text-muted-foreground leading-tight max-w-[180px]">
+                  <p className="text-[8px] lg:text-[9px] text-muted-foreground leading-tight max-w-[140px]">
                     National Centre for Advanced Studies
                   </p>
                 </div>
