@@ -105,7 +105,7 @@ const scholarships = [
     type: "Research Fellowship",
     description: "Fellowship for postdoctoral and experienced researchers",
     deadline: "Ongoing",
-    link: "https://ncas.ac.lk/georg-forster-research-fellowship/"
+    link: "/grants/other-scholarships/georg-forster-fellowship"
   },
   {
     id: 11,
@@ -115,7 +115,7 @@ const scholarships = [
     type: "Higher Education",
     description: "Pak-Sri Lanka Higher Education Cooperation Programme scholarships",
     deadline: "2025",
-    link: "https://ncas.ac.lk/pak-sri-lanka-higher-education-cooperation-programmehec-allama-iqbal-scholarships-for-sri-lankan-students/"
+    link: "/grants/other-scholarships/allama-iqbal-scholarships"
   },
   {
     id: 12,
@@ -125,7 +125,7 @@ const scholarships = [
     type: "Various Scholarships",
     description: "Various scholarship programmes offered by Thailand",
     deadline: "2025",
-    link: "https://ncas.ac.lk/scholarship-programmes-thailand/"
+    link: "/grants/other-scholarships/thailand-scholarships"
   },
   {
     id: 13,
@@ -145,7 +145,7 @@ const scholarships = [
     type: "PhD Fellowship",
     description: "PhD fellowship scheme for 2022/23",
     deadline: "2023",
-    link: "https://ncas.ac.lk/honk-kong-phd-fellowship-scheme-2022-23/"
+    link: "/grants/other-scholarships/hong-kong-phd-fellowship"
   }
 ]
 
