@@ -154,34 +154,69 @@ export function Header() {
           100% { transform: scale(1); opacity: 1; }
         }
 
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3); }
+          50% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.5); }
+        }
+
         .animate-bounce-in {
           animation: bounceIn 0.4s ease-out;
+        }
+
+        .glass-navbar {
+          background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(59, 130, 246, 0.75) 50%, rgba(37, 99, 235, 0.85) 100%);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: 0 8px 32px rgba(30, 64, 175, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-navbar-scrolled {
+          background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(59, 130, 246, 0.9) 50%, rgba(37, 99, 235, 0.95) 100%);
+          backdrop-filter: blur(25px) saturate(200%);
+          -webkit-backdrop-filter: blur(25px) saturate(200%);
+          box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-item {
+          position: relative;
+          color: rgba(255, 255, 255, 0.9);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-item::before {
           content: '';
           position: absolute;
-          bottom: 0;
+          bottom: -2px;
           left: 50%;
           width: 0;
           height: 2px;
-          background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-          transition: all 0.3s ease;
+          background: linear-gradient(90deg, #93c5fd, #ffffff, #93c5fd);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           transform: translateX(-50%);
+          border-radius: 2px;
         }
 
         .nav-item:hover::before {
-          width: 100%;
+          width: 80%;
+        }
+
+        .nav-item:hover {
+          color: #ffffff;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+          transform: translateY(-1px);
         }
 
         .nav-item::after {
           content: '';
           position: absolute;
-          top: -5px;
-          left: -5px;
-          right: -5px;
-          bottom: -5px;
-          background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+          inset: -4px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
           border-radius: 8px;
           opacity: 0;
           z-index: -1;
@@ -189,27 +224,42 @@ export function Header() {
         }
 
         .nav-item:hover::after {
-          opacity: 0.1;
+          opacity: 1;
         }
 
         .dropdown-item {
           position: relative;
           overflow: hidden;
+          transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(147, 197, 253, 0.1));
+          padding-left: 1rem;
         }
 
         .dropdown-item::before {
           content: '';
           position: absolute;
           top: 0;
-          left: -100%;
-          width: 100%;
+          left: 0;
+          width: 3px;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-          transition: left 0.5s ease;
+          background: linear-gradient(180deg, #3b82f6, #60a5fa);
+          transform: scaleY(0);
+          transition: transform 0.2s ease;
         }
 
         .dropdown-item:hover::before {
-          left: 100%;
+          transform: scaleY(1);
+        }
+
+        .glass-dropdown {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.98));
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          box-shadow: 0 20px 50px rgba(30, 64, 175, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
         }
 
         .mobile-menu-enter {
@@ -457,31 +507,23 @@ export function Header() {
 
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-custom shadow-2xl border-b border-border/50'
-          : 'bg-background/90 backdrop-blur-custom'
+          ? 'glass-navbar-scrolled'
+          : 'glass-navbar'
       }`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center space-x-2 group">
+              <Link href="/" className="flex items-center group">
                 <Image
                   src="/ncas-logo.png"
                   alt="NCAS Logo"
-                  width={140}
-                  height={140}
-                  className="object-contain transition-transform duration-300 group-hover:scale-105"
+                  width={220}
+                  height={220}
+                  className="object-contain transition-transform duration-300 group-hover:scale-105 -my-8"
                   style={{ background: 'transparent' }}
                   priority
                 />
-                <div className="hidden sm:flex flex-col">
-                  <h1 className="text-[11px] lg:text-xs font-semibold text-foreground transition-colors duration-300 group-hover:text-primary leading-tight">
-                    NCAS
-                  </h1>
-                  <p className="text-[8px] lg:text-[9px] text-muted-foreground leading-tight max-w-[140px]">
-                    National Centre for Advanced Studies
-                  </p>
-                </div>
               </Link>
             </div>
 
@@ -496,7 +538,7 @@ export function Header() {
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
                       <button
-                        className="nav-item relative flex items-center space-x-1 text-foreground hover:text-primary transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
+                        className="nav-item relative flex items-center space-x-1 text-white/90 hover:text-white transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
                       >
                         <span>{item.name}</span>
                         <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
@@ -505,14 +547,14 @@ export function Header() {
                       <div className="absolute top-full left-0 right-0 h-2" />
                       {activeDropdown === item.name && (
                         <div
-                          className="absolute top-[calc(100%+0.5rem)] left-1/2 transform -translate-x-1/2 w-64 bg-background/95 backdrop-blur-custom border border-border/50 rounded-xl shadow-2xl z-50 overflow-hidden animate-bounce-in"
+                          className="glass-dropdown absolute top-[calc(100%+0.5rem)] left-1/2 transform -translate-x-1/2 w-64 rounded-xl z-50 overflow-hidden animate-bounce-in"
                         >
                           <div className="p-2 max-h-80 overflow-y-auto">
                             {item.submenu.map((subItem) => (
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="dropdown-item block px-3 py-2 text-sm text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+                                className="dropdown-item block px-3 py-2 text-sm text-gray-700 hover:text-blue-600 rounded-lg transition-all duration-300"
                               >
                                 {subItem.name}
                               </Link>
@@ -524,7 +566,7 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="nav-item relative text-foreground hover:text-primary transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
+                      className="nav-item relative text-white/90 hover:text-white transition-all duration-300 text-[13px] font-medium py-2 px-2.5 rounded-md whitespace-nowrap"
                     >
                       {item.name}
                     </Link>
@@ -541,7 +583,7 @@ export function Header() {
               {/* Contact Us Button - Always visible on desktop */}
               <Link
                 href="/contact"
-                className="hidden lg:inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+                className="hidden lg:inline-flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 whitespace-nowrap"
               >
                 Contact Us
               </Link>
@@ -550,7 +592,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="lg:hidden p-2 rounded-lg hover:bg-primary/10 transition-all duration-300"
+                className="lg:hidden p-2 rounded-lg text-white hover:bg-white/20 transition-all duration-300"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

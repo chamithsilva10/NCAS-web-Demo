@@ -191,7 +191,7 @@ export function AdvancedSearch() {
       <Button
         variant="ghost"
         size="sm"
-        className="flex search-button p-2 rounded-lg transition-all duration-300"
+        className="flex p-2 rounded-lg transition-all duration-300 text-white hover:bg-white/20"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Search className="h-4 w-4" />
