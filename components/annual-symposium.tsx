@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, Users, Award } from "lucide-react"
+import { Calendar, Users, Award, MapPin } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function AnnualSymposium() {
   return (
@@ -10,7 +11,7 @@ export function AnnualSymposium() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">Annual Research Symposium</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join us for our flagship annual research symposium showcasing cutting-edge research in humanities and social sciences.
+            Our flagship annual research symposium showcasing cutting-edge research in humanities and social sciences.
           </p>
         </div>
 
@@ -24,25 +25,31 @@ export function AnnualSymposium() {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2">
                     <Calendar className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">Date: To be announced</span>
+                    <span className="text-muted-foreground">January 16-17, 2025</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Users className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">Location: NCAS, Colombo</span>
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <span className="text-muted-foreground">BMICH, Colombo, Sri Lanka</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Award className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">Theme: Advancing Knowledge Frontiers</span>
+                    <span className="text-muted-foreground">Theme: AI in Higher Education: Innovations, Challenges, and Future Directions</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Users className="h-5 w-5 text-primary" />
+                    <span className="text-muted-foreground">63+ Research Papers Presented</span>
                   </div>
                 </div>
-                <div className="mt-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    The deadline for submitting extended abstracts is now closed.
-                  </p>
+                <div className="mt-6 flex gap-3 flex-wrap">
                   <Button asChild>
-                    <a href="/information/symposium-2024" target="_blank" rel="noopener noreferrer">
-                      Learn More
-                    </a>
+                    <Link href="/information/symposium-2025">
+                      View Details
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/library/proceedings/2025">
+                      View Proceedings
+                    </Link>
                   </Button>
                 </div>
               </CardContent>

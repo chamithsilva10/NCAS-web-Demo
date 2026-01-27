@@ -115,7 +115,7 @@ const scholarships = [
     type: "Research Fellowship",
     description: "Fellowship for postdoctoral and experienced researchers",
     deadline: "Ongoing",
-    link: "https://ncas.ac.lk/georg-forster-research-fellowship/",
+    link: "/grants/other-scholarships/georg-forster-fellowship",
     content: "The Alexander von Humboldt Foundation is sponsoring researchers with above-average qualifications from all fields, through the Georg Forster Research Fellowship. The Georg Forster Research Fellowship supports postdoctoral and experienced researchers, from developing and transition countries (including Sri Lanka), with their research in Germany. For Postdocs: For those who are at the beginning of their academic career, should have completed the doctorate less than 04 years ago, monthly fellowship amount is €2,670, duration from 6 to 24 months. For Experienced researchers: For experienced researchers who are well advanced in their academic career, should have completed the doctorate less than 12 years ago, monthly fellowship amount is €3,170, duration from 6 to 18 months and can be divided into up to three stays within three years. Applications are reviewed in February, June and October. For more details visit: https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/georg-forster-research-fellowship"
   },
   {
@@ -126,7 +126,7 @@ const scholarships = [
     type: "Higher Education",
     description: "Pak-Sri Lanka Higher Education Cooperation Programme scholarships",
     deadline: "2025",
-    link: "https://ncas.ac.lk/pak-sri-lanka-higher-education-cooperation-programmehec-allama-iqbal-scholarships-for-sri-lankan-students/",
+    link: "/grants/other-scholarships/allama-iqbal-scholarships",
     content: "Content will be loaded from external source"
   },
   {
@@ -137,7 +137,7 @@ const scholarships = [
     type: "Various Scholarships",
     description: "Various scholarship programmes offered by Thailand",
     deadline: "2025",
-    link: "https://ncas.ac.lk/scholarship-programmes-thailand/",
+    link: "/grants/other-scholarships/thailand-scholarships",
     content: "Content will be loaded from external source"
   },
   {
@@ -159,7 +159,7 @@ const scholarships = [
     type: "PhD Fellowship",
     description: "PhD fellowship scheme for 2022/23",
     deadline: "2023",
-    link: "https://ncas.ac.lk/honk-kong-phd-fellowship-scheme-2022-23/",
+    link: "/grants/other-scholarships/hong-kong-phd-fellowship",
     content: "Content will be loaded from external source"
   }
 ]

@@ -141,13 +141,14 @@ export function Footer() {
                 <MapPin className="h-4 w-4 mt-0.5 text-primary-foreground/80" />
                 <div className="text-primary-foreground/80">
                   <p>National Centre for Advanced Studies</p>
-                  <p>University of Colombo</p>
-                  <p>Colombo 03, Sri Lanka</p>
+                  <p>in Humanities & Social Sciences</p>
+                  <p>No. 35, Bullers Lane</p>
+                  <p>Colombo 07, Sri Lanka</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-primary-foreground/80" />
-                <span className="text-primary-foreground/80">+94 11 2581835</span>
+                <span className="text-primary-foreground/80">+94 11 2680849</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary-foreground/80" />
@@ -159,7 +160,7 @@ export function Footer() {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/80 text-sm">
-            © 2024 National Centre for Advanced Studies in Humanities & Social Sciences. All rights reserved.
+            © 2025 National Centre for Advanced Studies in Humanities & Social Sciences. All rights reserved.
           </p>
         </div>
       </div>

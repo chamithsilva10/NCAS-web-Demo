@@ -326,19 +326,40 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            {/* Map Placeholder */}
+            {/* Interactive Google Map */}
             <Card>
               <CardHeader>
-                <CardTitle>Location</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  Location
+                </CardTitle>
                 <CardDescription>Find us in the heart of Colombo</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-muted-foreground">Interactive Map</p>
-                    <p className="text-sm text-muted-foreground">No. 35, Bullers Lane, Colombo 07</p>
-                  </div>
+              <CardContent className="space-y-4">
+                <div className="aspect-video rounded-lg overflow-hidden border">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9028459628257!2d79.86464731477267!3d6.9160856950433475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25973beed6fff%3A0x756683a43717dc89!2sNCAS%2C%20National%20Centre%20for%20Advanced%20Studies%20in%20Humanities%20and%20Social%20Sciences!5e0!3m2!1sen!2slk!4v1706356800000!5m2!1sen!2slk"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="NCAS Location Map"
+                  ></iframe>
+                </div>
+                <div className="p-4 bg-muted/50 rounded-lg">
+                  <p className="font-medium mb-1">No. 35, Bullers Lane, Colombo 07</p>
+                  <p className="text-sm text-muted-foreground">Sri Lanka</p>
+                  <a 
+                    href="https://www.google.com/maps/place/NCAS,+National+Centre+for+Advanced+Studies+in+Humanities+and+Social+Sciences/@6.916086,79.867262,16z/data=!4m6!3m5!1s0x3ae25973beed6fff:0x756683a43717dc89!8m2!3d6.9160856!4d79.8672621!16s%2Fg%2F1tcw20rk?hl=en&entry=ttu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-2 text-sm text-primary hover:underline"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Open in Google Maps
+                  </a>
                 </div>
               </CardContent>
             </Card>

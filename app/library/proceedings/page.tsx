@@ -10,6 +10,17 @@ import Link from "next/link"
 export default function ProceedingsPage() {
   const symposiumProceedings = [
     {
+      year: "2025",
+      title: "7th International Research Symposium in Humanities and Social Sciences",
+      theme: "AI in Higher Education: Innovations, Challenges, and Future Directions",
+      date: "January 16-17, 2025",
+      papers: 63,
+      pages: 450,
+      participants: 250,
+      countries: 18,
+      status: "Available",
+    },
+    {
       year: "2024",
       title: "6th International Research Symposium",
       theme: "Heritage, Identity and Transformation",

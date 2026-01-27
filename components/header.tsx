@@ -53,6 +53,7 @@ export function Header() {
         { name: "Partial Funding for Advanced Studies", href: "/grants/partial-funding" },
         { name: "Forms & Guidelines", href: "/grants/forms-guidelines" },
         { name: "Short Term Research Grants", href: "/grants/short-term" },
+        { name: "Short-Term Grant Recipients", href: "/grants/short-term-recipients" },
         { name: "NCAS Publication Awards", href: "/grants/publication-awards" },
         { name: "NCAS-QUT PhD Scholarships", href: "/grants/qut-scholarships" },
         { name: "Other Scholarships", href: "/grants/other-scholarships" },
@@ -84,6 +85,7 @@ export function Header() {
       submenu: [
         { name: "Vacancies", href: "/information/vacancies" },
         { name: "Gallery", href: "/information/gallery" },
+        { name: "7th International Research Symposium 2025", href: "/information/symposium-2025" },
         { name: "6th International Research Symposium 2024", href: "/information/symposium-2024" },
         { name: "5th International Research Symposium 2023", href: "/information/symposium-2023" },
         { name: "4th International Research Symposium 2022", href: "/information/symposium-2022" },
