@@ -1,422 +1,219 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Key, Globe, Unlock, MapPin, Database, HelpCircle, ExternalLink } from "lucide-react"
+import { ExternalLink, BookOpen, Globe, Search, Library, GraduationCap } from "lucide-react"
+import Link from "next/link"
 
 export default function ExternalLibrariesPage() {
-  const internationalDatabases = [
+  const digitalLibraries = [
     {
-      name: "JSTOR",
-      description: "Digital library with academic journals, books, and primary sources",
-      subjects: ["Humanities", "Social Sciences", "Arts"],
-      access: "Full Access",
-      type: "Academic Database",
-      resources: "12M+ articles",
-      url: "https://jstor.org",
+      name: "National Digital Library of India (NDLI)",
+      url: "https://ndl.iitkgp.ac.in/",
+      description: "A virtual repository of learning resources with a single-window search facility. Contains over 45 million resources from various domains.",
+      category: "Academic"
     },
     {
-      name: "Project MUSE",
-      description: "Scholarly literature from university presses and scholarly societies",
-      subjects: ["Literature", "History", "Philosophy", "Cultural Studies"],
-      access: "Full Access",
-      type: "Academic Database",
-      resources: "800+ journals",
-      url: "https://muse.jhu.edu",
+      name: "JSTOR Open Access",
+      url: "https://www.jstor.org/open/",
+      description: "Free access to thousands of journal articles, books, and primary sources across disciplines.",
+      category: "Journals"
     },
     {
-      name: "Oxford Academic",
-      description: "Oxford University Press journals and academic publications",
-      subjects: ["Humanities", "Social Sciences", "Law", "Medicine"],
-      access: "Selected Journals",
-      type: "Publisher Platform",
-      resources: "400+ journals",
-      url: "https://academic.oup.com",
+      name: "Shodhganga",
+      url: "https://shodhganga.inflibnet.ac.in/",
+      description: "A reservoir of Indian theses and dissertations, maintained by INFLIBNET Centre.",
+      category: "Theses"
     },
     {
-      name: "Cambridge Core",
-      description: "Cambridge University Press academic content platform",
-      subjects: ["Humanities", "Social Sciences", "Science"],
-      access: "Selected Journals",
-      type: "Publisher Platform",
-      resources: "380+ journals",
-      url: "https://cambridge.org/core",
+      name: "ERIC (Education Resources Information Center)",
+      url: "https://eric.ed.gov/",
+      description: "An online library of education research and information sponsored by the Institute of Education Sciences.",
+      category: "Education"
     },
   ]
 
-  const openAccessResources = [
-    {
-      name: "Directory of Open Access Journals (DOAJ)",
-      description: "Community-curated online directory of open access journals",
-      subjects: ["All Disciplines"],
-      access: "Open Access",
-      type: "Directory",
-      resources: "17,000+ journals",
-      url: "https://doaj.org",
-    },
-    {
-      name: "arXiv",
-      description: "Open-access repository of electronic preprints",
-      subjects: ["Physics", "Mathematics", "Computer Science", "Economics"],
-      access: "Open Access",
-      type: "Preprint Repository",
-      resources: "2M+ papers",
-      url: "https://arxiv.org",
-    },
-    {
-      name: "PLOS ONE",
-      description: "Open access peer-reviewed scientific journal",
-      subjects: ["Science", "Medicine", "Engineering"],
-      access: "Open Access",
-      type: "Journal",
-      resources: "300K+ articles",
-      url: "https://plosone.org",
-    },
-    {
-      name: "Humanities Commons",
-      description: "Open access repository for humanities scholarship",
-      subjects: ["Humanities", "Social Sciences"],
-      access: "Open Access",
-      type: "Repository",
-      resources: "25K+ works",
-      url: "https://hcommons.org",
-    },
-  ]
-
-  const regionalResources = [
-    {
-      name: "South Asian Studies Portal",
-      description: "Specialized database for South Asian research and publications",
-      subjects: ["South Asian Studies", "History", "Culture"],
-      access: "Full Access",
-      type: "Regional Database",
-      resources: "50K+ documents",
-      region: "South Asia",
-    },
-    {
-      name: "Asian Digital Library",
-      description: "Comprehensive collection of Asian academic resources",
-      subjects: ["Asian Studies", "Literature", "Philosophy"],
-      access: "Partial Access",
-      type: "Digital Library",
-      resources: "100K+ items",
-      region: "Asia",
-    },
-    {
-      name: "Sri Lanka Journal Online",
-      description: "Platform for Sri Lankan academic journals and publications",
-      subjects: ["All Disciplines"],
-      access: "Full Access",
-      type: "National Platform",
-      resources: "150+ journals",
-      region: "Sri Lanka",
-    },
-    {
-      name: "SAARC Documentation Centre",
-      description: "Regional documentation and information center",
-      subjects: ["Regional Studies", "Development", "Policy"],
-      access: "Full Access",
-      type: "Documentation Center",
-      resources: "25K+ documents",
-      region: "SAARC Countries",
-    },
-  ]
-
-  const specializedDatabases = [
-    {
-      name: "Anthropology Plus",
-      description: "Comprehensive database for anthropological research",
-      subjects: ["Anthropology", "Archaeology", "Cultural Studies"],
-      access: "Full Access",
-      type: "Specialized Database",
-      coverage: "1960-present",
-    },
-    {
-      name: "Historical Abstracts",
-      description: "Bibliography of historical literature from 1450 to present",
-      subjects: ["History", "Historical Research"],
-      access: "Full Access",
-      type: "Specialized Database",
-      coverage: "1450-present",
-    },
-    {
-      name: "Philosopher's Index",
-      description: "International database of philosophical literature",
-      subjects: ["Philosophy", "Ethics", "Logic"],
-      access: "Full Access",
-      type: "Specialized Database",
-      coverage: "1940-present",
-    },
-    {
-      name: "Sociological Abstracts",
-      description: "Comprehensive database for sociology and related disciplines",
-      subjects: ["Sociology", "Social Work", "Community Development"],
-      access: "Full Access",
-      type: "Specialized Database",
-      coverage: "1952-present",
-    },
-  ]
-
-  const accessInstructions = [
-    {
-      userType: "NCAS Faculty & Staff",
-      instructions: [
-        "Use your NCAS credentials to access institutional subscriptions",
-        "VPN access required for off-campus use",
-        "Contact library@ncas.ac.lk for access issues",
-      ],
-    },
-    {
-      userType: "Students",
-      instructions: [
-        "Use student ID and password for authentication",
-        "Access available through campus network",
-        "Limited concurrent users for some databases",
-      ],
-    },
-    {
-      userType: "External Researchers",
-      instructions: [
-        "Apply for guest access through library services",
-        "Temporary access available for collaborative projects",
-        "Contact partnerships@ncas.ac.lk for arrangements",
-      ],
-    },
+  const freeEbookSites = [
+    { name: "Project Gutenberg", url: "https://www.gutenberg.org/", description: "Over 60,000 free eBooks, focused on older works with expired US copyright" },
+    { name: "Internet Archive", url: "https://archive.org/details/texts", description: "Non-profit library of millions of free books, movies, software, music, and more" },
+    { name: "Open Library", url: "https://openlibrary.org/", description: "Open, editable library catalog with millions of books available to borrow" },
+    { name: "ManyBooks", url: "https://manybooks.net/", description: "Over 50,000 free eBooks in various formats" },
+    { name: "Bookboon", url: "https://bookboon.com/", description: "Free textbooks and business eBooks written exclusively for Bookboon" },
+    { name: "Free-eBooks.net", url: "https://www.free-ebooks.net/", description: "Free ebooks collection including fiction, non-fiction, academic texts" },
+    { name: "Standard Ebooks", url: "https://standardebooks.org/", description: "Free, open-source ebooks carefully formatted and typo-free" },
+    { name: "Feedbooks", url: "https://www.feedbooks.com/", description: "Large catalog of free public domain and original ebooks" },
+    { name: "LibriVox", url: "https://librivox.org/", description: "Free public domain audiobooks read by volunteers" },
+    { name: "Bartleby", url: "https://www.bartleby.com/", description: "Reference works, verse, fiction, and nonfiction" },
+    { name: "Digital Library of India", url: "http://dli.ernet.in/", description: "Preservation and enhanced access to Indian literary heritage" },
+    { name: "PDF Drive", url: "https://www.pdfdrive.com/", description: "Search engine for PDF files with millions of free books" },
+    { name: "Z-Library", url: "https://z-lib.org/", description: "One of the largest ebook libraries" },
+    { name: "OpenStax", url: "https://openstax.org/", description: "Free peer-reviewed textbooks for college and high school courses" },
+    { name: "DOAB (Directory of Open Access Books)", url: "https://www.doabooks.org/", description: "Discovery service for peer-reviewed open access books" },
+    { name: "OAPEN Library", url: "https://www.oapen.org/", description: "Freely accessible academic books, mainly in humanities and social sciences" },
+    { name: "AvaxHome", url: "https://avxhm.se/", description: "Wide variety of educational content and materials" },
+    { name: "Free Computer Books", url: "https://freecomputerbooks.com/", description: "Free computer, programming, mathematics, technical books" },
+    { name: "Planet eBook", url: "https://www.planetebook.com/", description: "Free classic literature in ebook format" },
+    { name: "Get Free eBooks", url: "https://www.getfreeebooks.com/", description: "Legal free ebooks download site" },
   ]
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">External Library Resources</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Access to international databases, open access repositories, and specialized collections to support your
-              research and academic pursuits.
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                <Library className="h-8 w-8" />
+              </div>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              External Digital Libraries
+            </h1>
+            <p className="text-lg text-blue-100 max-w-3xl mx-auto">
+              Access a curated collection of free digital libraries, open access journals, thesis repositories, 
+              and ebook resources from around the world.
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Access Instructions */}
-          <div className="mb-12">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Key className="h-5 w-5" />
-                  Access Instructions
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {accessInstructions.map((instruction, index) => (
-                    <div key={index} className="space-y-3">
-                      <h3 className="font-semibold text-primary">{instruction.userType}</h3>
-                      <ul className="space-y-2">
-                        {instruction.instructions.map((step, stepIndex) => (
-                          <li key={stepIndex} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            {step}
-                          </li>
-                        ))}
-                      </ul>
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-6xl mx-auto space-y-12">
+          
+          {/* Major Digital Libraries */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <Globe className="h-6 w-6 text-primary" />
+              Major Digital Libraries & Repositories
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {digitalLibraries.map((lib, idx) => (
+                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-lg">{lib.name}</CardTitle>
+                        <CardDescription className="mt-2">{lib.description}</CardDescription>
+                      </div>
+                      <Badge variant="outline">{lib.category}</Badge>
                     </div>
+                  </CardHeader>
+                  <CardContent>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href={lib.url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Visit Library
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Free eBook Resources */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <BookOpen className="h-6 w-6 text-primary" />
+              Free eBook Resources
+            </h2>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {freeEbookSites.map((site, idx) => (
+                    <Link
+                      key={idx}
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group p-4 rounded-lg border hover:border-primary hover:bg-primary/5 transition-all"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20">
+                          <BookOpen className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-sm group-hover:text-primary transition-colors">
+                            {site.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                            {site.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </section>
 
-          {/* International Databases */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <Globe className="h-6 w-6" />
-              International Databases
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {internationalDatabases.map((database, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <CardTitle className="text-lg">{database.name}</CardTitle>
-                      <Badge variant={database.access === "Full Access" ? "default" : "secondary"}>
-                        {database.access}
-                      </Badge>
-                    </div>
-                    <CardDescription>{database.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap gap-2">
-                        {database.subjects.map((subject, subIndex) => (
-                          <Badge key={subIndex} variant="outline" className="text-xs">
-                            {subject}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{database.type}</span>
-                        <span>{database.resources}</span>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Access Database
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+          {/* Search Tips */}
+          <section>
+            <Card className="bg-muted/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Search className="h-5 w-5" />
+                  Tips for Using Digital Libraries
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span>Use specific keywords and Boolean operators (AND, OR, NOT) for better search results</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span>Check the citation requirements for each resource before using them in your research</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span>Create accounts on major platforms to save searches and access personalized recommendations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span>Use filters to narrow down results by publication date, subject area, or document type</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span>Always verify the credibility of sources and cross-reference information</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </section>
 
-          {/* Open Access Resources */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <Unlock className="h-6 w-6" />
-              Open Access Resources
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {openAccessResources.map((resource, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <CardTitle className="text-lg">{resource.name}</CardTitle>
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">
-                        {resource.access}
-                      </Badge>
-                    </div>
-                    <CardDescription>{resource.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap gap-2">
-                        {resource.subjects.map((subject, subIndex) => (
-                          <Badge key={subIndex} variant="outline" className="text-xs">
-                            {subject}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{resource.type}</span>
-                        <span>{resource.resources}</span>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Visit Resource
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Regional Resources */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <MapPin className="h-6 w-6" />
-              Regional Resources
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {regionalResources.map((resource, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <CardTitle className="text-lg">{resource.name}</CardTitle>
-                      <Badge variant="outline">{resource.region}</Badge>
-                    </div>
-                    <CardDescription>{resource.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap gap-2">
-                        {resource.subjects.map((subject, subIndex) => (
-                          <Badge key={subIndex} variant="outline" className="text-xs">
-                            {subject}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{resource.type}</span>
-                        <span>{resource.resources}</span>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Access Resource
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Specialized Databases */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <Database className="h-6 w-6" />
-              Specialized Databases
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {specializedDatabases.map((database, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{database.name}</CardTitle>
-                    <CardDescription>{database.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap gap-2">
-                        {database.subjects.map((subject, subIndex) => (
-                          <Badge key={subIndex} variant="outline" className="text-xs">
-                            {subject}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{database.type}</span>
-                        <span>Coverage: {database.coverage}</span>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Access Database
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Support Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <HelpCircle className="h-5 w-5" />
-                Need Help?
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Library Support</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p>📧 library@ncas.ac.lk</p>
-                    <p>📞 +94 11 2345 678</p>
-                    <p>🕒 Mon-Fri: 8:00 AM - 6:00 PM</p>
-                    <p>🕒 Sat: 9:00 AM - 1:00 PM</p>
-                  </div>
+          {/* NCAS Library Resources */}
+          <section>
+            <Card className="border-primary/20">
+              <CardHeader className="bg-primary/5">
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  NCAS Library Resources
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-muted-foreground mb-4">
+                  In addition to these external resources, NCAS maintains a comprehensive library with:
+                </p>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  <Link href="/library/thesis-dissertations" className="p-4 rounded-lg border hover:border-primary hover:bg-primary/5 transition-all text-center">
+                    <BookOpen className="h-6 w-6 mx-auto mb-2 text-primary" />
+                    <span className="font-medium">Thesis & Dissertations</span>
+                  </Link>
+                  <Link href="/library/journal" className="p-4 rounded-lg border hover:border-primary hover:bg-primary/5 transition-all text-center">
+                    <BookOpen className="h-6 w-6 mx-auto mb-2 text-primary" />
+                    <span className="font-medium">NCAS Journal</span>
+                  </Link>
+                  <Link href="/library/proceedings" className="p-4 rounded-lg border hover:border-primary hover:bg-primary/5 transition-all text-center">
+                    <BookOpen className="h-6 w-6 mx-auto mb-2 text-primary" />
+                    <span className="font-medium">Proceedings</span>
+                  </Link>
                 </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Research Support</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p>📧 research@ncas.ac.lk</p>
-                    <p>📞 +94 11 2345 679</p>
-                    <p>🕒 Mon-Fri: 9:00 AM - 5:00 PM</p>
-                    <p>📅 Appointments available</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </section>
         </div>
       </div>
     </div>

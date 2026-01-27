@@ -1,677 +1,340 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Download, Eye, Calendar, Users, Award, FileText } from "lucide-react"
+import { Download, FileText, ExternalLink, Calendar, BookOpen } from "lucide-react"
 import Link from "next/link"
 
 export default function ProceedingsPage() {
-  const symposiumProceedings = [
+  const proceedings = [
     {
       year: "2025",
-      title: "7th International Research Symposium in Humanities and Social Sciences",
+      title: "7th International Research Symposium in Humanities and Social Sciences (IRSHSS 2025)",
       theme: "AI in Higher Education: Innovations, Challenges, and Future Directions",
       date: "January 16-17, 2025",
-      papers: 63,
-      pages: 450,
-      participants: 250,
-      countries: 18,
-      status: "Available",
+      fullProceedings: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/NCAS_IRSHSS2025_Symposium_Proceeding_Book_2025.pdf",
+      pageUrl: "https://ncas.ac.lk/symposium2025/",
+      sections: [
+        { name: "Front Pages", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/FP.pdf" },
+        { name: "Organizing Committee", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/OG.2025.pdf" },
+        { name: "Table of Contents", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/contents.pdf" },
+        { name: "Panel of Reviewers", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/Panel%20of%20Reviewers.pdf" },
+        { name: "Session Chairs & Co-Chairs", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/SessionChairs_and_CoChairs.pdf" },
+        { name: "List of Abstracts", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/ListofAbstracts.pdf" },
+      ],
+      messages: [
+        { name: "Chief Guest - Hon. Prime Minister Dr. Harini Amarasuriya", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/MESSAGE%20BY%20THE%20CHIEF%20GUEST.pdf" },
+        { name: "Director - Professor Prashanthi Narangoda", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/MESSAGE%20BY%20THE%20DIRECTOR.pdf" },
+        { name: "Co-Chair - Dr. Sampath Chandrasena", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/MESSAGE%20FROM%20THE%20CO%20CHAIR%20Dr.%20Sampath%20Chandrasena.pdf" },
+        { name: "Keynote - Professor C. D. Sebastian", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/Keynote%20Address%20by%20Professor%20C.%20D.%20Sebastian.pdf" },
+        { name: "Keynote - Dr. Chris Haywood", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/Keynote%20Address%20by%20Dr.%20Chris%20Haywood.pdf" },
+        { name: "Plenary Session", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/messages/PLENARY%20SESSION.pdf" },
+      ],
+      subThemes: [
+        { name: "Sub Theme 01 - AI Enhanced Teaching & Learning", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/01%20AI%20Enhanced%20Teaching%20&%20Learning%20innovations,%20adaptive%20pedagogies,%20and%20student%20engagement.pdf" },
+        { name: "Sub Theme 02 - Curriculum Design & Academic Advising", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/02%20Curriculum%20Design%20&%20Academic%20Advising%20AI%20supported%20modelling,%20personal%20learning%20pathways,%20and%20skills%20forecasting.pdf" },
+        { name: "Sub Theme 03 - Research, Writing & Scholarly Communication", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/03%20Research,%20Writing,%20and%20Scholarly%20Communication%20AI%20tools%20for%20literature%20review,%20data%20analysis,%20and%20knowledge%20dissemination.pdf" },
+        { name: "Sub Theme 04 - Implementation Case Studies", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/04%20Implementation%20Case%20Studies%20successes%20and%20obstacles%20across%20varied%20cultural,%20economic,%20and%20institutional%20settings.pdf" },
+        { name: "Sub Theme 05 - Inclusive Education", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/05%20Inclusive%20Education%20leveraging%20AI%20to%20bridge%20access%20gaps%20and%20support%20learners%20with%20diverse%20needs.pdf" },
+        { name: "Sub Theme 06 - Strategic Planning & Support Services", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/06%20Strategic%20Planning%20&%20Support%20Services%20AI%20as%20both%20a%20challenge%20and%20an%20opportunity%20for%20educational%20leadership.pdf" },
+        { name: "Sub Theme 07 - Miscellaneous", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/07%20Miscellaneous%20final.pdf" },
+        { name: "Sub Theme 08 - Policy & Governance", url: "https://ncas.ac.lk/symposium2025/IRSHSS2025ProceedingBook/08%20Policy%20&%20Governance%20regulatory%20frameworks,%20quality%20assurance,%20and%20institutional%20readiness%20for%20AI%20adoption%20Final.pdf" },
+      ]
     },
     {
       year: "2024",
-      title: "6th International Research Symposium",
+      title: "6th International Research Symposium in Humanities and Social Sciences (IRSHSS 2024)",
       theme: "Heritage, Identity and Transformation",
       date: "November 28, 2024",
-      papers: 24,
-      pages: 312,
-      participants: 180,
-      countries: 15,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/symposium2024/",
+      sections: [
+        { name: "Front Pages", url: "https://ncas.ac.lk/symposium2024/bookspdf/1_Front%20Page.pdf" },
+        { name: "Organizing Committee", url: "https://ncas.ac.lk/symposium2024/bookspdf/2_Organizing%20Committee.pdf" },
+        { name: "Table of Contents", url: "https://ncas.ac.lk/symposium2024/bookspdf/3_CONTENTS.pdf" },
+        { name: "Panel of Reviewers", url: "https://ncas.ac.lk/symposium2024/bookspdf/4_Panel%20of%20Reviewers.pdf" },
+        { name: "Session Chairs & Co-Chairs", url: "https://ncas.ac.lk/symposium2024/bookspdf/5_Session%20Chairs,%20Co-Chairs%20and%20Rapporteurs.pdf" },
+        { name: "List of Abstracts", url: "https://ncas.ac.lk/symposium2024/bookspdf/6_List%20of%20Abstracts.pdf" },
+      ],
+      messages: [
+        { name: "Chairman UGC - Senior Professor Kapila Senaviratne", url: "https://ncas.ac.lk/symposium2024/bookspdf/7_Message%20by%20Senior%20Professor%20Kapila%20Senaviratne.pdf" },
+        { name: "Vice Chairman UGC - Senior Professor K. L. Wasantha Kumara", url: "https://ncas.ac.lk/symposium2024/bookspdf/8_Message%20by%20Senior%20Professor%20K%20L%20Wasantha%20Kumara.pdf" },
+        { name: "Director - Professor Prashanthi Narangoda", url: "https://ncas.ac.lk/symposium2024/bookspdf/9_Message%20by%20Professor%20(Mrs.)%20Prashanthi%20Narangoda.pdf" },
+        { name: "Co-Chair - Senior Professor Upul Ranjith Hewawitanagamage", url: "https://ncas.ac.lk/symposium2024/bookspdf/10_Message%20by%20Senior%20(Chair)%20Professor%20Upul%20Ranjith%20Hewawitanagamage.pdf" },
+        { name: "Co-Chair - Dr. Sampath Chandrasena", url: "https://ncas.ac.lk/symposium2024/bookspdf/11_Message%20by%20Dr.%20Sampath%20Chandrasena.pdf" },
+        { name: "Keynote Speech - Dr. Robert Dygas", url: "https://ncas.ac.lk/symposium2024/bookspdf/12_Message%20by%20Keynote%20Speech%20Dr.%20Robert%20Dygas.pdf" },
+        { name: "Panel Discussion", url: "https://ncas.ac.lk/symposium2024/bookspdf/13_Panel%20Discussions.pdf" },
+      ],
+      subThemes: [
+        { name: "Sub Theme 01 - Technology in English Language Teaching", url: "https://ncas.ac.lk/symposium2024/bookspdf/14_SUB%20THEME%2001%20-%20Exploring%20Innovations%20Integrating%20Technology%20in%20English%20Language%20Teaching%20and%20Linguistics.pdf" },
+        { name: "Sub Theme 02 - Impact of Technology on Industry & Society", url: "https://ncas.ac.lk/symposium2024/bookspdf/15_SUB%20THEME%2002%20-%20Impact%20of%20Technology%20on%20Industry,%20Society,%20Labour%20Market,%20and%20Human%20Wellbeing.pdf" },
+        { name: "Sub Theme 03 - Technology in Cultural Heritage", url: "https://ncas.ac.lk/symposium2024/bookspdf/16_SUB%20THEME%2003%20-%20Role%20of%20Technology%20in%20Restoring%20Tangible%20and%20Intangible%20Cultural%20Heritage.pdf" },
+        { name: "Sub Theme 04 - Transforming Education", url: "https://ncas.ac.lk/symposium2024/bookspdf/17_SUB%20THEME%2004%20-%20Transforming%20Education%20Navigating%20Reforms%20in%20the%20Digital%20Age.pdf" },
+        { name: "Sub Theme 05 - Democracy and Citizenship", url: "https://ncas.ac.lk/symposium2024/bookspdf/18_SUB%20THEME%2005%20-%20Democracy%20and%20Citizenship%20in%20the%20Era%20of%20Technology.pdf" },
+        { name: "Sub Theme 06 - Social Networking", url: "https://ncas.ac.lk/symposium2024/bookspdf/19_SUB%20THEME%2006%20-%20Social%20Networking%20and%20Human%20Interactions%20Explored%20Through%20Technology.pdf" },
+        { name: "Sub Theme 07 - Digital Humanities", url: "https://ncas.ac.lk/symposium2024/bookspdf/20_SUB%20THEME%2007%20-%20Digital%20Humanities%20and%20Computational%20Approaches%20on%20Harnessing%20the%20Performing%20and%20Visual%20Arts.pdf" },
+        { name: "Sub Theme 08 - Machine Learning & Translation", url: "https://ncas.ac.lk/symposium2024/bookspdf/21_SUB%20THEME%2008%20-%20Machine%20Learning%20and%20Machine%20Translation%20for%20Cross-Cultural%20Communication.pdf" },
+        { name: "Sub Theme 09 - Technology on Socio-Economic Crises", url: "https://ncas.ac.lk/symposium2024/bookspdf/22_SUB%20THEME%2009%20-%20The%20Impact%20of%20Technology%20on%20Socio-Economic%20Crises.pdf" },
+        { name: "Sub Theme 10 - Industrialization & Climate Change", url: "https://ncas.ac.lk/symposium2024/bookspdf/23_SUB%20THEME%2010%20-%20Industrialization,%20Global%20Warming%20and%20Climate%20Change.pdf" },
+        { name: "Sub Theme 11 - Political Economy", url: "https://ncas.ac.lk/symposium2024/bookspdf/24_SUB%20THEME%2011%20-%20Political%20Economy%20and%20Sustainable%20Transformative%20Approaches.pdf" },
+        { name: "Sub Theme 12 - Miscellaneous", url: "https://ncas.ac.lk/symposium2024/bookspdf/25_SUB%20THEME%2012%20-%20Miscellaneous.pdf" },
+        { name: "Index", url: "https://ncas.ac.lk/symposium2024/bookspdf/26_Indexes.pdf" },
+      ]
     },
     {
       year: "2023",
-      title: "5th International Research Symposium",
+      title: "5th International Research Symposium on Social Sciences & Humanities (IRSSSH 2023)",
       theme: "Heritage and Culture: Re-visiting the late Professor Senake Dias Bandaranayake",
       date: "November 29, 2023",
-      papers: 22,
-      pages: 298,
-      participants: 150,
-      countries: 12,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/symposium2023/",
+      sections: [
+        { name: "Front Pages", url: "https://ncas.ac.lk/symposium2023/bookspdf/1_Front%20Page.pdf" },
+        { name: "Organizing Committee", url: "https://ncas.ac.lk/symposium2023/bookspdf/2_Organizing%20Committee.pdf" },
+        { name: "Table of Contents", url: "https://ncas.ac.lk/symposium2023/bookspdf/3_CONTENTS.pdf" },
+        { name: "Panel of Reviewers", url: "https://ncas.ac.lk/symposium2023/bookspdf/4_Panel%20of%20Reviewers.pdf" },
+        { name: "Session Chairs & Co-Chairs", url: "https://ncas.ac.lk/symposium2023/bookspdf/5_Session%20Chairs,%20Co-Chairs%20and%20Rapporteurs.pdf" },
+        { name: "List of Abstracts", url: "https://ncas.ac.lk/symposium2023/bookspdf/6_List%20of%20Abstracts.pdf" },
+      ],
+      messages: [
+        { name: "Hon. Minister Dr. Susil Premajayantha", url: "https://ncas.ac.lk/symposium2023/bookspdf/7_Message%20by%20Hon.%20Dr.%20Susil%20Premajayantha.pdf" },
+        { name: "Hon. State Minister Dr. Suren Raghavan", url: "https://ncas.ac.lk/symposium2023/bookspdf/8_Message%20by%20Hon.%20Dr.%20Suren%20Raghavan.pdf" },
+        { name: "Chairman UGC - Senior Professor Sampath Amarathunge", url: "https://ncas.ac.lk/symposium2023/bookspdf/9_Message%20by%20Senior%20Professor%20Sampath%20Amarathunge.pdf" },
+        { name: "Director - Professor Prashanthi Narangoda", url: "https://ncas.ac.lk/symposium2023/bookspdf/10_Message%20by%20Professor%20(Mrs.)%20Prashanthi%20Narangoda.pdf" },
+        { name: "Symposium Coordinator - Dr. Sampath Chandrasena", url: "https://ncas.ac.lk/symposium2023/bookspdf/11_Message%20by%20Dr.%20Sampath%20Chandrasena.pdf" },
+        { name: "Keynote Speech - Dr. Lodewijk J. Wagenaar", url: "https://ncas.ac.lk/symposium2023/bookspdf/12_Message%20by%20Keynote%20Speech%20Dr.%20Lodewijk%20J.%20Wagenaar.pdf" },
+      ],
+      subThemes: [
+        { name: "Sub Theme 01 - Tangible and Intangible Cultural Heritage", url: "https://ncas.ac.lk/symposium2023/bookspdf/14_SUB%20THEME%2001%20Tangible%20and%20Intangible%20Cultural%20Heritage%20A%20Retrospective%20of%20Demanding%20Identity.pdf" },
+        { name: "Sub Theme 02 - Religion and Society", url: "https://ncas.ac.lk/symposium2023/bookspdf/15_SUB%20THEME%2002%20Religion%20And%20Society%20a%20Philosophy,%20Myth%20and%20Reality%20Beyond%20Science..pdf" },
+        { name: "Sub Theme 03 - Freedom, Rights, and Civil Responsibilities", url: "https://ncas.ac.lk/symposium2023/bookspdf/16_SUB%20THEME%2003%20Freedom,%20Rights,%20and%20Civil%20Responsibilities%20vs%20Legislation%20and%20Social%20Justice.pdf" },
+        { name: "Sub Theme 04 - Reconciliation, Politics, and Society", url: "https://ncas.ac.lk/symposium2023/bookspdf/17_SUB%20THEME%2004%20Reconciliation,%20Politics,%20and%20Society.pdf" },
+        { name: "Sub Theme 05 - Environment and Ecology", url: "https://ncas.ac.lk/symposium2023/bookspdf/18_SUB%20THEME%2005%20Environment%20and%20Ecology,%20Transmigration%20of%20Healthy%20Livelihood.pdf" },
+        { name: "Sub Theme 06 - Sustainable Development and SMEs", url: "https://ncas.ac.lk/symposium2023/bookspdf/19_SUB%20THEME%2006%20Sustainable%20Development%20and%20the%20Role%20of%20SMEs..pdf" },
+        { name: "Sub Theme 07 - Tourism", url: "https://ncas.ac.lk/symposium2023/bookspdf/20_SUB%20THEME%2007%20Tourism%20An%20Industry%20or%20and%20Art.pdf" },
+        { name: "Sub Theme 08 - Digital Tools in Teaching and Learning", url: "https://ncas.ac.lk/symposium2023/bookspdf/21_SUB%20THEME%2008%20Role%20of%20Digital%20Tools%20in%20Teaching%20and%20Learning%20A%20far%20cry%20for%20Language%20Learning..pdf" },
+        { name: "Sub Theme 09 - Authentic Science and Technology", url: "https://ncas.ac.lk/symposium2023/bookspdf/22_SUB%20THEME%2009%20Authentic%20Science%20and%20Technology.pdf" },
+        { name: "Sub Theme 10 - AI and Digital Restoration", url: "https://ncas.ac.lk/symposium2023/bookspdf/23_SUB%20THEME%2010%20Al%20(Artificial%20Intelligence)%20and%20digital%20restoration.pdf" },
+      ]
     },
     {
       year: "2022",
-      title: "4th International Research Symposium",
+      title: "4th International Research Symposium on Social Sciences & Humanities (IRSSSH 2022)",
       theme: "Digital Humanities and Cultural Heritage",
-      date: "December 15, 2022",
-      papers: 18,
-      pages: 245,
-      participants: 120,
-      countries: 10,
-      status: "Available",
-    },
-    {
-      year: "2021",
-      title: "3rd International Research Symposium",
-      theme: "Post-Colonial Studies in the Digital Age",
-      date: "November 25, 2021",
-      papers: 16,
-      pages: 210,
-      participants: 95,
-      countries: 8,
-      status: "Available",
+      date: "November 17-18, 2022",
+      fullProceedings: "https://ncas.ac.lk/wp-content/uploads/2022/12/IRSSSH_2022_Symposium_Proceedings.pdf",
+      pageUrl: "https://ncas.ac.lk/symposium-proceedings-2022/",
     },
     {
       year: "2020",
-      title: "2nd International Research Symposium",
-      theme: "Knowledge, Innovation and Sustainability",
-      date: "December 17, 2020",
-      papers: 14,
-      pages: 185,
-      participants: 85,
-      countries: 7,
-      status: "Available",
+      title: "3rd International Research Symposium on Social Sciences & Humanities (IRSSSH 2020)",
+      theme: "Development towards Sustainability",
+      date: "December 2020",
+      pageUrl: "https://ncas.ac.lk/3rd-international-research-symposium-on-social-sciences-and-humanities-irsssh-2020/",
     },
     {
       year: "2019",
-      title: "1st International Research Symposium",
-      theme: "Knowledge, Innovation and Sustainability",
-      date: "December 19, 2019",
-      papers: 12,
-      pages: 165,
-      participants: 75,
-      countries: 6,
-      status: "Available",
+      title: "2nd International Symposium on Social Science and Humanities (ISSSH 2019)",
+      theme: "Development towards Sustainability",
+      date: "December 12-13, 2019",
+      pageUrl: "https://ncas.ac.lk/2nd-international-symposium-on-social-science-and-humanities-isssh-2019-development-towards-sustainability-1213-december-2019",
     },
     {
       year: "2018",
-      title: "Annual Research Symposium on Social Sciences and Humanities (ARSSSH) 2018",
+      title: "International Research Symposium on Social Sciences & Humanities (IRSSSH 2018)",
       theme: "Knowledge, Innovation and Sustainability",
       date: "December 13-14, 2018",
-      papers: 20,
-      pages: 240,
-      participants: 100,
-      countries: 8,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/Proceedings/IRSSSH2018/index_2018.html",
     },
     {
       year: "2017",
-      title: "Annual Research Symposium on Social Sciences and Humanities (ARSSSH) 2017",
+      title: "Annual Research Symposium on Social Sciences & Humanities (ARSSSH 2017)",
       theme: "Knowledge, Innovation and Sustainability",
       date: "December 14-15, 2017",
-      papers: 18,
-      pages: 220,
-      participants: 90,
-      countries: 7,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/Proceedings/ARSSSH_2017/arrsssh2017.html",
     },
     {
       year: "2016",
-      title: "Annual Research Symposium on Social Sciences and Humanities (ARSSSH) 2016",
+      title: "Annual Research Symposium on Social Sciences & Humanities (ARSSSH 2016)",
       theme: "Knowledge, Innovation and Sustainability",
       date: "December 15-16, 2016",
-      papers: 16,
-      pages: 200,
-      participants: 80,
-      countries: 6,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/Proceedings/symposium2016/index.html",
     },
     {
       year: "2015",
-      title: "Annual Research Symposium on Social Sciences and Humanities (ARSSSH) 2015",
+      title: "Annual Research Symposium on Social Sciences & Humanities (ARSSSH 2015)",
       theme: "Knowledge, Innovation and Sustainability",
       date: "December 17-18, 2015",
-      papers: 14,
-      pages: 180,
-      participants: 70,
-      countries: 5,
-      status: "Available",
+      pageUrl: "https://ncas.ac.lk/Proceedings/symposium2015/index_2015.html",
     },
     {
       year: "2014",
-      title: "Annual Research Symposium on Social Sciences and Humanities (ARSSSH) 2014",
+      title: "Annual Research Symposium on Social Sciences & Humanities (ARSSSH 2014)",
       theme: "Knowledge, Innovation and Sustainability",
       date: "December 18-19, 2014",
-      papers: 12,
-      pages: 160,
-      participants: 60,
-      countries: 4,
-      status: "Available",
-    },
-  ]
-
-  const featuredPapers2024 = [
-    {
-      title: "Digital Preservation Strategies for Intangible Cultural Heritage in South Asia",
-      authors: ["Dr. Priya Jayawardena", "Prof. Michael Chen"],
-      affiliation: "NCAS & Queensland University of Technology",
-      pages: "15-28",
-      abstract:
-        "This paper presents innovative digital preservation strategies specifically designed for intangible cultural heritage in South Asia, addressing the unique challenges of documenting oral traditions, performing arts, and cultural practices.",
-      keywords: ["Digital Preservation", "Intangible Heritage", "South Asia", "Cultural Documentation"],
-    },
-    {
-      title: "AI-Assisted Archaeological Site Documentation: A Case Study from Anuradhapura",
-      authors: ["Dr. Sandun Perera", "Ms. Chamari Silva", "Prof. James Thompson"],
-      affiliation: "NCAS & University of Cambridge",
-      pages: "29-45",
-      abstract:
-        "An exploration of artificial intelligence applications in archaeological documentation, featuring a comprehensive case study of AI-assisted mapping and artifact classification at Anuradhapura ancient city.",
-      keywords: ["Artificial Intelligence", "Archaeology", "Documentation", "Anuradhapura"],
-    },
-    {
-      title: "Community-Based Heritage Management: Lessons from Rural Sri Lanka",
-      authors: ["Dr. Nimesha Fernando", "Prof. Sarah Williams"],
-      affiliation: "NCAS & University of Melbourne",
-      pages: "46-62",
-      abstract:
-        "This study examines community-based approaches to heritage management in rural Sri Lankan contexts, analyzing successful models of local engagement and sustainable preservation practices.",
-      keywords: ["Community Management", "Heritage Preservation", "Rural Development", "Sri Lanka"],
-    },
-  ]
-
-  const workshopProceedings = [
-    {
-      title: "Digital Humanities Workshop 2024",
-      theme: "Machine Learning in Cultural Analysis",
-      date: "March 15, 2024",
-      papers: 12,
-      participants: 45,
-      type: "Workshop",
-    },
-    {
-      title: "Research Methodology Workshop 2024",
-      theme: "Qualitative Research in Social Sciences",
-      date: "February 20, 2024",
-      papers: 8,
-      participants: 35,
-      type: "Workshop",
-    },
-    {
-      title: "Heritage Documentation Workshop 2023",
-      theme: "3D Scanning and Digital Modeling",
-      date: "October 12, 2023",
-      papers: 10,
-      participants: 28,
-      type: "Workshop",
-    },
-  ]
-
-  const specialCollections = [
-    {
-      title: "Keynote Addresses Collection",
-      description: "Distinguished keynote presentations from international scholars",
-      count: 45,
-      years: "2019-2024",
-    },
-    {
-      title: "Best Paper Awards",
-      description: "Award-winning papers from each symposium",
-      count: 18,
-      years: "2019-2024",
-    },
-    {
-      title: "Student Research Papers",
-      description: "Outstanding research presentations by graduate students",
-      count: 67,
-      years: "2020-2024",
-    },
-    {
-      title: "Panel Discussion Summaries",
-      description: "Comprehensive summaries of panel discussions and debates",
-      count: 32,
-      years: "2021-2024",
+      pageUrl: "https://ncas.ac.lk/Proceedings/symposium2014/index_2014.html",
     },
   ]
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
+      <section className="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-primary-foreground/10 rounded-full flex items-center justify-center">
-                <FileText className="h-8 w-8" />
-              </div>
-              <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold text-balance">Conference Proceedings</h1>
-                <p className="text-xl text-primary-foreground/90">Research Papers & Presentations</p>
+              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                <BookOpen className="h-8 w-8" />
               </div>
             </div>
-            <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90 text-pretty">
-              Comprehensive collection of research papers from international symposiums, workshops, and academic
-              conferences
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Symposium Proceedings
+            </h1>
+            <p className="text-lg text-indigo-100 max-w-3xl mx-auto">
+              Access conference papers and presentations from NCAS International Research Symposiums 
+              in Humanities and Social Sciences (2014-2025)
             </p>
-            <div className="flex items-center justify-center gap-8 text-primary-foreground/90">
-              <div className="text-center">
-                <div className="text-2xl font-bold">11</div>
-                <div className="text-sm">Years</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">234</div>
-                <div className="text-sm">Papers</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">45</div>
-                <div className="text-sm">Countries</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16">
-        {/* Search Section */}
-        <Card className="mb-12">
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-6xl mx-auto space-y-8">
+          {proceedings.map((proc) => (
+            <Card key={proc.year} className="overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-primary/10 to-primary/5">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="default" className="text-lg px-3 py-1">{proc.year}</Badge>
+                      <Badge variant="outline">
+                        <Calendar className="h-3 w-3 mr-1" />
+                        {proc.date}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl">{proc.title}</CardTitle>
+                    <CardDescription className="mt-2 text-base">
+                      <strong>Theme:</strong> {proc.theme}
+                    </CardDescription>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {proc.fullProceedings && (
+                      <Button asChild>
+                        <Link href={proc.fullProceedings} target="_blank">
+                          <Download className="h-4 w-4 mr-2" />
+                          Full Proceedings
+                        </Link>
+                      </Button>
+                    )}
+                    <Button asChild variant="outline">
+                      <Link href={proc.pageUrl} target="_blank">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        View on NCAS
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              
+              {(proc.sections || proc.messages || proc.subThemes) && (
+                <CardContent className="pt-6">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Front Matter Section */}
+                    {proc.sections && (
+                      <div>
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-primary" />
+                          Front Matter
+                        </h4>
+                        <ul className="space-y-2">
+                          {proc.sections.map((section, idx) => (
+                            <li key={idx}>
+                              <Link 
+                                href={section.url} 
+                                target="_blank"
+                                className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1"
+                              >
+                                <Download className="h-3 w-3" />
+                                {section.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Messages Section */}
+                    {proc.messages && (
+                      <div>
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-primary" />
+                          Messages
+                        </h4>
+                        <ul className="space-y-2">
+                          {proc.messages.map((msg, idx) => (
+                            <li key={idx}>
+                              <Link 
+                                href={msg.url} 
+                                target="_blank"
+                                className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1"
+                              >
+                                <Download className="h-3 w-3" />
+                                {msg.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Sub Themes Section */}
+                    {proc.subThemes && (
+                      <div className="md:col-span-2 lg:col-span-1">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-primary" />
+                          Sub Themes / Papers
+                        </h4>
+                        <ul className="space-y-2">
+                          {proc.subThemes.map((theme, idx) => (
+                            <li key={idx}>
+                              <Link 
+                                href={theme.url} 
+                                target="_blank"
+                                className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1"
+                              >
+                                <Download className="h-3 w-3" />
+                                {theme.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          ))}
+        </div>
+
+        {/* Contact Information */}
+        <Card className="mt-12 max-w-4xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-2xl">Search Proceedings</CardTitle>
-            <CardDescription>Find papers by title, author, year, or research topic</CardDescription>
+            <CardTitle>Contact Information</CardTitle>
+            <CardDescription>
+              For more information about symposium proceedings
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search by title, author, or keywords..." className="pl-10" />
-                </div>
-                <Button>Search</Button>
+            <div className="grid sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <p><strong>Telephone:</strong> +94 011 2685850</p>
+                <p><strong>Fax:</strong> +94 011 2693975</p>
               </div>
-              <div className="flex gap-4">
-                <Select>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Event Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Events</SelectItem>
-                    <SelectItem value="symposium">International Symposium</SelectItem>
-                    <SelectItem value="workshop">Workshops</SelectItem>
-                    <SelectItem value="conference">Conferences</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select>
-                  <SelectTrigger className="w-32">
-                    <SelectValue placeholder="Year" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="2024">2024</SelectItem>
-                    <SelectItem value="2023">2023</SelectItem>
-                    <SelectItem value="2022">2022</SelectItem>
-                    <SelectItem value="2021">2021</SelectItem>
-                    <SelectItem value="2020">2020</SelectItem>
-                    <SelectItem value="2019">2019</SelectItem>
-                    <SelectItem value="2018">2018</SelectItem>
-                    <SelectItem value="2017">2017</SelectItem>
-                    <SelectItem value="2016">2016</SelectItem>
-                    <SelectItem value="2015">2015</SelectItem>
-                    <SelectItem value="2014">2014</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Research Area" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Areas</SelectItem>
-                    <SelectItem value="digital-humanities">Digital Humanities</SelectItem>
-                    <SelectItem value="cultural-studies">Cultural Studies</SelectItem>
-                    <SelectItem value="heritage">Heritage Studies</SelectItem>
-                    <SelectItem value="postcolonial">Post-Colonial Studies</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div>
+                <p><strong>Email:</strong> info@ncas.ac.lk</p>
+                <p><strong>Website:</strong> <Link href="https://ncas.ac.lk" target="_blank" className="text-primary hover:underline">ncas.ac.lk</Link></p>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        <Tabs defaultValue="symposium" className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="symposium">International Symposium</TabsTrigger>
-            <TabsTrigger value="featured">Featured Papers</TabsTrigger>
-            <TabsTrigger value="workshops">Workshops</TabsTrigger>
-            <TabsTrigger value="collections">Special Collections</TabsTrigger>
-          </TabsList>
-
-          {/* International Symposium Tab */}
-          <TabsContent value="symposium" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">International Research Symposium Proceedings</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Annual symposium proceedings featuring research from international scholars
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {symposiumProceedings.map((symposium, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="grid md:grid-cols-3 gap-6">
-                      <div className="md:col-span-2">
-                        <div className="flex items-start justify-between mb-4">
-                          <div>
-                            <h3 className="text-xl font-semibold mb-2">{symposium.title}</h3>
-                            <p className="text-primary font-medium mb-2">{symposium.theme}</p>
-                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                              <span className="flex items-center gap-1">
-                                <Calendar className="h-4 w-4" />
-                                {symposium.date}
-                              </span>
-                              <Badge variant="secondary">{symposium.year}</Badge>
-                              <Badge
-                                variant={symposium.status === "Available" ? "default" : "secondary"}
-                                className={symposium.status === "Available" ? "bg-green-600" : ""}
-                              >
-                                {symposium.status}
-                              </Badge>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-4">
-                          <div className="p-3 bg-muted/50 rounded-lg">
-                            <div className="text-lg font-bold text-primary">{symposium.papers}</div>
-                            <div className="text-xs text-muted-foreground">Papers</div>
-                          </div>
-                          <div className="p-3 bg-muted/50 rounded-lg">
-                            <div className="text-lg font-bold text-primary">{symposium.pages}</div>
-                            <div className="text-xs text-muted-foreground">Pages</div>
-                          </div>
-                          <div className="p-3 bg-muted/50 rounded-lg">
-                            <div className="text-lg font-bold text-primary">{symposium.participants}</div>
-                            <div className="text-xs text-muted-foreground">Participants</div>
-                          </div>
-                          <div className="p-3 bg-muted/50 rounded-lg">
-                            <div className="text-lg font-bold text-primary">{symposium.countries}</div>
-                            <div className="text-xs text-muted-foreground">Countries</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col justify-center space-y-3">
-                        <Link href={`/library/proceedings/${symposium.year}`}>
-                          <Button className="w-full">
-                            <Download className="h-4 w-4 mr-2" />
-                            Download Full Proceedings
-                          </Button>
-                        </Link>
-                        <Link href={`/library/proceedings/${symposium.year}`}>
-                          <Button variant="outline" className="w-full bg-transparent">
-                            <Eye className="h-4 w-4 mr-2" />
-                            Browse Papers
-                          </Button>
-                        </Link>
-                        <Link href={`/library/proceedings/${symposium.year}`}>
-                          <Button variant="outline" className="w-full bg-transparent">
-                            <FileText className="h-4 w-4 mr-2" />
-                            Table of Contents
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Archive Access */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Complete Archive</CardTitle>
-                <CardDescription>Access to all symposium proceedings from 2014 to 2024</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <Button size="lg" className="mb-4">
-                    Browse Complete Archive
-                  </Button>
-                  <p className="text-sm text-muted-foreground">
-                    Search across all years • Download individual papers or complete volumes
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Featured Papers Tab */}
-          <TabsContent value="featured" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">Featured Papers 2024</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Highlighted research papers from our latest international symposium
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {featuredPapers2024.map((paper, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2 text-balance">{paper.title}</h3>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                        <span className="flex items-center gap-1">
-                          <Users className="h-4 w-4" />
-                          {paper.authors.join(", ")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                        <span>{paper.affiliation}</span>
-                        <span>Pages: {paper.pages}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4">{paper.abstract}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {paper.keywords.map((keyword, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          {keyword}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
-                        <Eye className="h-4 w-4 mr-2" />
-                        Read Abstract
-                      </Button>
-                      <Button size="sm">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Award className="h-4 w-4 mr-2" />
-                        Citation
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Awards and Recognition */}
-            <Card className="bg-gradient-to-r from-amber-50 to-orange-50 border-amber-200">
-              <CardHeader>
-                <CardTitle className="text-amber-800">Best Paper Awards</CardTitle>
-                <CardDescription className="text-amber-700">
-                  Recognizing outstanding research contributions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <Award className="h-12 w-12 mx-auto mb-3 text-amber-600" />
-                    <h4 className="font-semibold text-amber-800 mb-2">Best Overall Paper</h4>
-                    <p className="text-sm text-amber-700">
-                      "Digital Preservation Strategies for Intangible Cultural Heritage in South Asia"
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <Award className="h-12 w-12 mx-auto mb-3 text-amber-600" />
-                    <h4 className="font-semibold text-amber-800 mb-2">Best Student Paper</h4>
-                    <p className="text-sm text-amber-700">
-                      "Community-Based Heritage Management: Lessons from Rural Sri Lanka"
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <Award className="h-12 w-12 mx-auto mb-3 text-amber-600" />
-                    <h4 className="font-semibold text-amber-800 mb-2">Innovation Award</h4>
-                    <p className="text-sm text-amber-700">
-                      "AI-Assisted Archaeological Site Documentation: A Case Study from Anuradhapura"
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Workshops Tab */}
-          <TabsContent value="workshops" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">Workshop Proceedings</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Specialized workshops and training sessions with focused research presentations
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {workshopProceedings.map((workshop, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <Badge variant="secondary" className="mb-2">
-                        {workshop.type}
-                      </Badge>
-                      <h3 className="font-semibold text-lg mb-2">{workshop.title}</h3>
-                      <p className="text-primary font-medium mb-2">{workshop.theme}</p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                        <Calendar className="h-4 w-4" />
-                        <span>{workshop.date}</span>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-center mb-4">
-                      <div className="p-2 bg-muted/50 rounded">
-                        <div className="text-lg font-bold text-primary">{workshop.papers}</div>
-                        <div className="text-xs text-muted-foreground">Papers</div>
-                      </div>
-                      <div className="p-2 bg-muted/50 rounded">
-                        <div className="text-lg font-bold text-primary">{workshop.participants}</div>
-                        <div className="text-xs text-muted-foreground">Participants</div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
-                        <Eye className="h-4 w-4 mr-2" />
-                        View Papers
-                      </Button>
-                      <Button size="sm" className="w-full">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Workshop Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Workshop Series</CardTitle>
-                <CardDescription>Regular workshops and training programs</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold mb-3">Upcoming Workshops</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• Advanced Research Methods (March 2025)</li>
-                      <li>• Digital Archive Management (April 2025)</li>
-                      <li>• Grant Writing Workshop (May 2025)</li>
-                      <li>• Publication Strategies (June 2025)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-3">Workshop Benefits</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• Hands-on training sessions</li>
-                      <li>• Expert-led instruction</li>
-                      <li>• Networking opportunities</li>
-                      <li>• Certificate of completion</li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Special Collections Tab */}
-          <TabsContent value="collections" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">Special Collections</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Curated collections of proceedings organized by theme and significance
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {specialCollections.map((collection, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{collection.title}</CardTitle>
-                    <CardDescription>{collection.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex justify-between items-center mb-4">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary">{collection.count}</div>
-                        <div className="text-sm text-muted-foreground">Items</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-primary">{collection.years}</div>
-                        <div className="text-sm text-muted-foreground">Years</div>
-                      </div>
-                    </div>
-                    <Button className="w-full">
-                      <FileText className="h-4 w-4 mr-2" />
-                      Browse Collection
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Digital Archive Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Digital Archive Features</CardTitle>
-                <CardDescription>Advanced search and access capabilities</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <Search className="h-12 w-12 mx-auto mb-3 text-primary" />
-                    <h4 className="font-semibold mb-2">Advanced Search</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Full-text search across all proceedings with filters and faceted browsing
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <Download className="h-12 w-12 mx-auto mb-3 text-primary" />
-                    <h4 className="font-semibold mb-2">Bulk Download</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Download individual papers or complete proceedings volumes
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <Award className="h-12 w-12 mx-auto mb-3 text-primary" />
-                    <h4 className="font-semibold mb-2">Citation Tools</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Automatic citation generation in multiple academic formats
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
       </div>
     </div>
   )

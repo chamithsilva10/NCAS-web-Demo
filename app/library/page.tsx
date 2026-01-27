@@ -2,23 +2,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { BookOpen, Database, FileText, ExternalLink } from "lucide-react"
+import { BookOpen, Database, FileText, ExternalLink, GraduationCap, Globe } from "lucide-react"
 
 export default function LibraryPage() {
   const resources = [
+    {
+      title: "NCAS Journal",
+      description: "Peer-reviewed academic journal with 18 volumes (2011-2023) covering humanities and social sciences",
+      icon: BookOpen,
+      count: "18 volumes published",
+      link: "/library/journal",
+    },
+    {
+      title: "Thesis & Dissertations",
+      description: "PhD and MPhil theses completed by NCAS grantees at Sri Lankan & international universities",
+      icon: GraduationCap,
+      count: "100+ theses",
+      link: "/library/thesis-dissertations",
+    },
     {
       title: "Digital Repository",
       description: "Access to NCAS research publications, theses, and academic works",
       icon: Database,
       count: "2,500+ documents",
       link: "/library/digital-repository",
-    },
-    {
-      title: "NCAS Journal",
-      description: "Peer-reviewed academic journal in humanities and social sciences",
-      icon: BookOpen,
-      count: "13 volumes published",
-      link: "/library/journal",
     },
     {
       title: "Symposium Proceedings",
@@ -28,11 +35,18 @@ export default function LibraryPage() {
       link: "/library/proceedings",
     },
     {
-      title: "External Libraries",
-      description: "Access to international digital libraries and databases",
+      title: "External Digital Libraries",
+      description: "Curated collection of free digital libraries, open access journals, and ebook resources",
       icon: ExternalLink,
-      count: "15+ databases",
+      count: "20+ resources",
       link: "/library/external-libraries",
+    },
+    {
+      title: "Research Opportunities",
+      description: "International research fellowships and scholarship programs for scholars",
+      icon: Globe,
+      count: "Doctoral & Postdoc",
+      link: "/library/expanding-research-horizons",
     },
   ]
 
@@ -96,7 +110,7 @@ export default function LibraryPage() {
         {/* Library Resources */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12">Library Resources</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {resources.map((resource, index) => {
               const IconComponent = resource.icon
               return (

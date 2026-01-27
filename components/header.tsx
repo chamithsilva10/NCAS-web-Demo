@@ -96,12 +96,12 @@ export function Header() {
       name: "Library",
       href: "/library",
       submenu: [
+        { name: "NCAS Journal", href: "/library/journal" },
+        { name: "Thesis & Dissertations", href: "/library/thesis-dissertations" },
         { name: "Digital Repository", href: "/library/digital-repository" },
-        { name: "Journal", href: "/library/journal" },
         { name: "Symposium Proceedings", href: "/library/proceedings" },
-        { name: "Research Opportunities", href: "/library/research-opportunities" },
-        { name: "Grantees Thesis & Dissertations", href: "/library/thesis-dissertations" },
         { name: "External Digital Libraries", href: "/library/external-libraries" },
+        { name: "Expanding Research Horizons", href: "/library/expanding-research-horizons" },
       ],
     },
     {
