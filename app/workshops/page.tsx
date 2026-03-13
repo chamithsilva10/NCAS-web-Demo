@@ -134,8 +134,6 @@ export default function WorkshopsPage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
-
       <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-16">
