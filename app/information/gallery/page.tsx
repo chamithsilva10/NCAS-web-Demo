@@ -3,69 +3,130 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import fs from 'fs'
+import path from 'path'
 
-export default function GalleryPage() {
-  const galleryCategories = [
-    {
-      title: "Research Symposiums",
-      count: 45,
-      description: "International research symposiums and academic conferences",
-      images: [
-        "/academic-conference.png",
-        "/academic-awards-ceremony.jpg",
-        "/international-academic-collaboration.jpg",
-      ],
-    },
-    {
-      title: "Workshops & Training",
-      count: 32,
-      description: "Training workshops and capacity building programs",
-      images: ["/academic-research-office.jpg", "/research-funding-documents.jpg", "/female-academic-researcher.png"],
-    },
-    {
-      title: "Graduation Ceremonies",
-      count: 28,
-      description: "PhD and MPhil graduation ceremonies and celebrations",
-      images: ["/academic-awards-ceremony.jpg", "/professional-academic-director.jpg", "/male-professor-academic.jpg"],
-    },
-    {
-      title: "International Collaborations",
-      count: 18,
-      description: "Meetings and events with international partners",
-      images: [
-        "/international-academic-collaboration.jpg",
-        "/female-academic-publications.jpg",
-        "/academic-conference.png",
-      ],
-    },
-  ]
+type SummaryImage = { file?: string }
+type SummaryEntry = { images?: SummaryImage[] }
 
-  const recentEvents = [
-    {
-      title: "5th International Research Symposium 2023",
-      date: "November 29, 2023",
-      participants: 150,
-      photos: 24,
-      description: "Heritage and Culture: Re-visiting the late Professor Senake Dias Bandaranayake",
-      image: "/academic-conference.png",
-    },
-    {
-      title: "Workshop on Digital Humanities",
-      date: "October 15, 2023",
-      participants: 35,
-      photos: 18,
-      description: "Hands-on training in digital research methodologies",
-      image: "/academic-research-office.jpg",
-    },
-    {
-      title: "PhD Graduation Ceremony 2023",
-      date: "September 20, 2023",
-      participants: 25,
-      photos: 32,
-      description: "Celebrating our newest PhD graduates",
-      image: "/academic-awards-ceremony.jpg",
-    },
-  ]
+async function readSummary() {
+  const p = path.resolve(process.cwd(), 'downloaded-galleries', 'summary.cleaned.json')
+  try {
+    const raw = await fs.promises.readFile(p, 'utf-8')
+    return JSON.parse(raw) as Record<string, SummaryEntry>
+  } catch (e) {
+    return {}
+  }
+}
+
+const categoryConfig = [
+  {
+    title: "Research Symposiums",
+    description: "International research symposiums and academic conferences",
+    slugs: [
+      "7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos",
+      "ncas-6th-international-research-symposium-2024-photos",
+      "ncas-5th-international-research-symposium-2023",
+      "ncas-4th-international-research-symposium-2022-photos",
+      "symposium-gallery-2020",
+      "ncas_symposium_gallery_2019",
+      "symposium-2018",
+    ],
+  },
+  {
+    title: "Workshops & Training",
+    description: "Training workshops and capacity building programs",
+    slugs: ["centenary-year-celebrations-of-humanities-and-social-sciences-photos"],
+  },
+  {
+    title: "Graduation Ceremonies",
+    description: "PhD and MPhil graduation ceremonies and celebrations",
+    slugs: ["centenary-year-celebrations-of-humanities-and-social-sciences-photos"],
+  },
+  {
+    title: "International Collaborations",
+    description: "Meetings and events with international partners",
+    slugs: [
+      "20th-council-of-regent-took-place-at-the-3rd-floor-board-room-of-the-ministry-of-education",
+      "cor-meetinfg-10-10-2024",
+    ],
+  },
+] as const
+
+const recentEventConfig = [
+  {
+    slug: "ncas-5th-international-research-symposium-2023",
+    title: "5th International Research Symposium 2023",
+    date: "November 29, 2023",
+    participants: 150,
+    photos: 24,
+    description: "Heritage and Culture: Re-visiting the late Professor Senake Dias Bandaranayake",
+  },
+  {
+    slug: "centenary-year-celebrations-of-humanities-and-social-sciences-photos",
+    title: "Workshop on Digital Humanities",
+    date: "October 15, 2023",
+    participants: 35,
+    photos: 18,
+    description: "Hands-on training in digital research methodologies",
+  },
+  {
+    slug: "7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos",
+    title: "PhD Graduation Ceremony 2023",
+    date: "September 20, 2023",
+    participants: 25,
+    photos: 32,
+    description: "Celebrating our newest PhD graduates",
+  },
+] as const
+
+export default async function GalleryPage() {
+  const summary = await readSummary()
+  const base = path.resolve(process.cwd(), 'downloaded-galleries')
+
+  const allImageUrls = Object.values(summary)
+    .flatMap((entry) => entry.images || [])
+    .map((img) => {
+      if (!img.file) return null
+      const rel = path.relative(base, img.file)
+      return `/api/gallery?path=${encodeURIComponent(rel)}`
+    })
+    .filter(Boolean) as string[]
+
+  const galleryCategories = categoryConfig.map((cfg) => {
+    const images = cfg.slugs.flatMap((slug) => summary[slug]?.images || [])
+    const count = images.length
+    const imageUrls = images
+      .map((img) => {
+        if (!img.file) return null
+        const rel = path.relative(base, img.file)
+        return `/api/gallery?path=${encodeURIComponent(rel)}`
+      })
+      .filter(Boolean)
+      .slice(0, 3) as string[]
+
+    const fallback = allImageUrls.slice(0, 3)
+    return {
+      title: cfg.title,
+      count,
+      description: cfg.description,
+      images: imageUrls.length > 0 ? imageUrls : fallback,
+    }
+  })
+
+  const recentEvents = recentEventConfig.map((event) => {
+    const images = summary[event.slug]?.images || []
+    const first = images[0]
+    const image = first?.file
+      ? `/api/gallery?path=${encodeURIComponent(path.relative(base, first.file))}`
+      : allImageUrls[0] || "/placeholder.svg"
+
+    return {
+      ...event,
+      image,
+      href: `/information/gallery/all/${encodeURIComponent(event.slug)}`,
+    }
+  })
 
   return (
     <div className="min-h-screen bg-background">
@@ -126,16 +187,17 @@ export default function GalleryPage() {
                   </div>
                   <CardDescription>{category.description}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <Link href="/information/gallery/all" className="block">
-                    <Button variant="outline" className="w-full bg-transparent">
-                      <Camera className="h-4 w-4 mr-2" />
-                      View All Photos
-                    </Button>
-                  </Link>
-                </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <Link href="/information/gallery/all" className="block">
+              <Button size="lg" className="px-8">
+                <Camera className="h-4 w-4 mr-2" />
+                View All Gallery Photos
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -182,8 +244,8 @@ export default function GalleryPage() {
                       <span className="text-xs text-muted-foreground">{event.photos} photos</span>
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full bg-transparent">
-                <Link href="/information/gallery/all" className="block">View Event Photos</Link>
+                  <Button asChild variant="outline" className="w-full bg-transparent">
+                    <Link href={event.href}>View Event Photos</Link>
                   </Button>
                 </CardContent>
               </Card>
