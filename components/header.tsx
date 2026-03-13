@@ -49,7 +49,8 @@ export function Header() {
       submenu: [
         { name: "Grantees", href: "/grants/grantees" },
         { name: "Profiles of PhDs Completed", href: "/grants/profiles-phd" },
-        { name: "Research Colloquium", href: "/grants/research-colloquium" },
+          { name: "Research Colloquium 2024", href: "/grants/research-colloquium/2024" },
+          { name: "Research Colloquium 2025", href: "/grants/research-colloquium/2025" },
         { name: "Partial Funding for Advanced Studies", href: "/grants/partial-funding" },
         { name: "Forms & Guidelines", href: "/grants/forms-guidelines" },
         { name: "Short Term Research Grants", href: "/grants/short-term" },
@@ -98,6 +99,7 @@ export function Header() {
       submenu: [
         { name: "NCAS Journal", href: "/library/journal" },
         { name: "Thesis & Dissertations", href: "/library/thesis-dissertations" },
+          { name: "Short-Term Grantees Research Reports", href: "/library/short-term-grantees-reports" },
         { name: "Digital Repository", href: "/library/digital-repository" },
         { name: "Symposium Proceedings", href: "/library/proceedings" },
         { name: "External Digital Libraries", href: "/library/external-libraries" },
@@ -112,7 +114,16 @@ export function Header() {
         { name: "By Laws to award MPhil/PhD", href: "/register/bylaws" },
       ],
     },
-    { name: "International Collaborations", href: "/international" },
+    {
+      name: "International Collaborations",
+      href: "/international",
+      submenu: [
+        { name: "International Collaborations", href: "/international" },
+        { name: "Life Learning Center", href: "/international/life-learning-center" },
+        { name: "Visiting Research Fellows", href: "/international/visiting-research-fellows" },
+        { name: "Prof. Shihan de Silva Jayasuriya", href: "/international/visiting-fellows/shihan-de-silva-jayasuriya" },
+      ],
+    },
   ]
 
   const handleDropdownToggle = (name: string) => {
