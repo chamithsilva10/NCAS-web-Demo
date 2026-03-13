@@ -2,6 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import GalleryClient from './client'
 
+function prettyTitle(slug: string) {
+  return slug
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (m) => m.toUpperCase())
+}
+
 const summaryPath = path.resolve(process.cwd(), 'downloaded-galleries', 'summary.cleaned.json')
 
 async function readSummary() {
@@ -29,9 +35,14 @@ export default async function GalleryDetail({ params }: { params: { gallery: str
   })
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">{galleryKey}</h1>
-      <GalleryClient images={urls} />
+    <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-6 rounded-2xl border border-primary/10 bg-card/70 p-6 shadow-sm backdrop-blur">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{prettyTitle(galleryKey)}</h1>
+          <p className="mt-2 text-muted-foreground">{urls.length} curated photos in this topic.</p>
+        </div>
+        <GalleryClient images={urls} />
+      </div>
     </div>
   )
 }
