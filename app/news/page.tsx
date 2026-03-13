@@ -6,101 +6,127 @@ import Link from "next/link"
 
 const newsArticles = [
   {
-    id: 2,
-    title: "Short Term Research Grants Available",
+    id: 1,
+    title: "RESEARCH COLLOQUIUM 2025",
     excerpt:
-      "NCAS announces new short-term research grant opportunities for emerging scholars in humanities and social sciences.",
+      "Annual research colloquium showcasing the latest research findings from NCAS scholars.",
     content:
-      "We are pleased to announce the availability of short-term research grants designed to support innovative research projects in humanities and social sciences. These grants are intended to facilitate preliminary research, pilot studies, and collaborative projects.",
-    date: "2024-03-10",
+      "NCAS invites all scholars to the Annual Research Colloquium 2025, which showcases the latest research findings and academic contributions from NCAS-affiliated researchers across humanities and social sciences.",
+    date: "2025-01-01",
+    category: "Events",
+    author: "Academic Affairs",
+    featured: true,
+    image: "/academic-conference.png",
+    slug: "research-colloquium-2025",
+  },
+  {
+    id: 2,
+    title: "Short Term Research Grants – 2025",
+    excerpt:
+      "Applications now open for short-term research grants to support innovative research projects in humanities and social sciences.",
+    content:
+      "NCAS is pleased to announce short-term research grants for 2025. These grants are designed to support preliminary research, pilot studies, and collaborative projects in humanities and social sciences.",
+    date: "2025-01-01",
     category: "Funding",
     author: "Research Committee",
-    featured: true,
+    featured: false,
     image: "/research-funding-documents.jpg",
     slug: "short-term-research-grants",
   },
   {
     id: 3,
+    title: "Partial Funding for Advanced Postgraduate Studies – 2025",
+    excerpt:
+      "2nd Round applications now open for postgraduate funding support for MPhil and PhD candidates.",
+    content:
+      "NCAS invites applications for partial funding for advanced postgraduate studies (2nd Round, 2025). This is available for MPhil and PhD candidates engaged in approved research in the field of humanities and social sciences.",
+    date: "2025-03-20",
+    category: "Funding",
+    author: "Postgraduate Studies Division",
+    featured: false,
+    image: "/research-funding-documents.jpg",
+    slug: "partial-funding-postgraduate-studies-2025",
+  },
+  {
+    id: 4,
     title: "Expanding Research Horizons: Opportunities for International Scholars",
     excerpt:
-      "New international collaboration programs designed to foster global research partnerships and academic exchange.",
+      "Doctoral, Postdoctoral, and Senior Research Fellowships now open for international scholars.",
     content:
-      "NCAS is launching new international collaboration programs aimed at expanding research horizons and fostering global partnerships. These initiatives will provide opportunities for scholars to engage in cross-cultural research and academic exchange.",
-    date: "2024-03-08",
-    category: "International",
+      "NCAS announces international fellowship opportunities for Doctoral, Postdoctoral, and Senior researchers. These fellowships aim to foster global research partnerships and academic exchange in humanities and social sciences.",
+    date: "2025-01-19",
+    category: "Research",
     author: "International Relations Office",
+    featured: false,
     image: "/international-academic-collaboration.jpg",
     slug: "expanding-research-horizons",
   },
   {
-    id: 4,
-    title: "NCAS Publication Awards 2024",
-    excerpt:
-      "Recognizing excellence in academic publishing. Submit your best work for consideration in our annual publication awards.",
-    content:
-      "The NCAS Publication Awards celebrate outstanding contributions to academic literature in humanities and social sciences. We invite researchers to submit their best publications for consideration in various categories.",
-    date: "2024-03-05",
-    category: "Awards",
-    author: "Publications Committee",
-    image: "/academic-awards-ceremony.jpg",
-    slug: "publication-awards-2024",
-  },
-  {
     id: 5,
-    title: "Research Colloquium 2024 - Session I",
+    title: "7th International Research Symposium in Humanities and Social Sciences (IRSHSS) 2025",
     excerpt:
-      "Join us for the first session of our annual research colloquium featuring leading scholars and innovative research presentations.",
+      "AI in Higher Education: Prospects and Challenges – October 30th–31st, 2025 at NCAS.",
     content:
-      "The first session of our annual Research Colloquium will feature presentations from leading scholars in various fields of humanities and social sciences. This event provides a platform for academic discourse and knowledge sharing.",
-    date: "2024-03-01",
+      "The 7th IRSHSS 2025 focuses on 'AI in Higher Education: Prospects and Challenges'. The symposium will be held on October 30–31, 2025 at NCAS and welcomes research submissions from scholars across all disciplines of humanities and social sciences.",
+    date: "2025-06-20",
     category: "Events",
-    author: "Academic Affairs",
+    author: "Symposium Committee",
+    featured: false,
     image: "/academic-conference.png",
-    slug: "research-colloquium-2024",
+    slug: "irshss-2025",
   },
 ]
 
 const upcomingEvents = [
   {
     id: 1,
-    title: "Workshop on Structural Equation Modeling (with AMOS)",
-    date: "2024-04-15",
-    time: "9:00 AM - 5:00 PM",
-    location: "NCAS Conference Hall",
-    attendees: 45,
+    title: "Workshop on Structural Equation Modeling (SmartPLS)",
+    date: "2025-04-25",
+    time: "9:00 AM – 5:00 PM",
+    location: "NCAS Training Centre, Colombo 07",
+    attendees: 40,
     category: "Workshop",
     description:
-      "Comprehensive workshop on quantitative research methods using AMOS software for structural equation modeling.",
+      "Hands-on training in quantitative research using SmartPLS for Structural Equation Modeling (SEM). Suitable for postgraduate students and researchers.",
   },
   {
     id: 2,
     title: "Certificate Course on Systematic Literature Review",
-    date: "2024-04-20",
-    time: "10:00 AM - 4:00 PM",
-    location: "Research Center",
+    date: "2025-05-10",
+    time: "10:00 AM – 4:00 PM",
+    location: "NCAS Research Centre, Colombo 07",
     attendees: 30,
     category: "Course",
     description:
-      "Master systematic literature review techniques with bibliometric analysis, manuscript writing, and publication strategies.",
+      "Master systematic literature review techniques including bibliometric analysis, manuscript writing, and publication strategies for academic journals.",
   },
   {
     id: 3,
-    title: "International River Congress 2024",
-    date: "2024-05-10",
-    time: "8:00 AM - 6:00 PM",
-    location: "Main Auditorium",
-    attendees: 200,
-    category: "Conference",
+    title: "7th International Research Symposium (IRSHSS) 2025",
+    date: "2025-10-30",
+    time: "8:00 AM – 6:00 PM",
+    location: "NCAS, No. 21, Polhengoda Gardens, Colombo 05",
+    attendees: 250,
+    category: "Symposium",
     description:
-      "3rd International River Congress focusing on sustainable developments through water resources management.",
+      "AI in Higher Education: Prospects and Challenges. International symposium bringing together researchers from across the world to share innovative findings.",
+  },
+  {
+    id: 4,
+    title: "SPSS for Statistical Analysis – Certificate Course",
+    date: "2025-06-14",
+    time: "9:00 AM – 4:00 PM",
+    location: "NCAS Computer Lab, Colombo 07",
+    attendees: 25,
+    category: "Course",
+    description:
+      "Comprehensive certificate course on IBM SPSS for data analysis, covering descriptive statistics, regression, and hypothesis testing for social science research.",
   },
 ]
 
 export default function NewsPage() {
   return (
     <div className="min-h-screen">
-      <Header />
-
       <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-16">
@@ -245,8 +271,6 @@ export default function NewsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
