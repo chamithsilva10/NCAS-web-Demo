@@ -4,8 +4,6 @@ import { ArrowLeft, Download, Calendar, User, Award, Building } from 'lucide-rea
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
 
 // Import the thesis data
 const thesisDissertations = [
@@ -2186,7 +2184,6 @@ export default function ThesisDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back Button */}
         <div className="mb-6">
@@ -2326,7 +2323,6 @@ export default function ThesisDetailPage({ params }: PageProps) {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   )
 }
