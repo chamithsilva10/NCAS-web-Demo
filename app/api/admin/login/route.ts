@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server"
-import { ADMIN_COOKIE_NAME, createAdminSessionToken, getAdminCookieMaxAge, verifyAdminPassword } from "@/lib/admin-auth"
+import { ADMIN_COOKIE_NAME, createAdminSessionToken, getAdminCookieMaxAge, verifyAdminEmail, verifyAdminPassword } from "@/lib/admin-auth"
 
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as { password?: string }
+  const body = (await request.json().catch(() => ({}))) as { email?: string; password?: string }
+  const email = body.email || ""
   const password = body.password || ""
 
-  if (!verifyAdminPassword(password)) {
-    return NextResponse.json({ message: "Invalid password" }, { status: 401 })
+  if (!verifyAdminEmail(email) || !verifyAdminPassword(password)) {
+    return NextResponse.json({ message: "Invalid email or password" }, { status: 401 })
   }
 
   const response = NextResponse.json({ success: true })
