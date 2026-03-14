@@ -106,7 +106,7 @@ export default function NotFound() {
                       Ministry of Higher Education
                     </Link>
                     <Link
-                      href="http://ministry%20of%20education/"
+                      href="https://moe.gov.lk/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center p-3 border rounded-lg hover:bg-muted transition-colors"
@@ -199,7 +199,7 @@ export default function NotFound() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 text-sm">
-                    <li><Link href="/gallery" className="text-primary hover:underline">Gallery</Link></li>
+                    <li><Link href="/information/gallery" className="text-primary hover:underline">Gallery</Link></li>
                     <li><Link href="/about/ordinance" className="text-primary hover:underline">Universities Act</Link></li>
                     <li><Link href="/about/strategic-plan-2024-2028" className="text-primary hover:underline">Strategic Plans</Link></li>
                     <li><Link href="/about/action-plan" className="text-primary hover:underline">Action Plans</Link></li>
@@ -217,10 +217,10 @@ export default function NotFound() {
                   <p className="text-sm text-muted-foreground mb-4">
                     Can't find what you're looking for? Try our advanced search.
                   </p>
-                  <Link href="/search">
+                  <Link href="/information">
                     <Button className="w-full">
                       <Search className="mr-2 h-4 w-4" />
-                      Advanced Search
+                      Browse Information
                     </Button>
                   </Link>
                 </CardContent>
