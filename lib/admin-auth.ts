@@ -8,6 +8,10 @@ function getAdminPassword() {
   return process.env.ADMIN_DASHBOARD_PASSWORD || ""
 }
 
+function getAdminEmail() {
+  return (process.env.ADMIN_DASHBOARD_EMAIL || "admin@ncas.local").toLowerCase()
+}
+
 function getSessionSecret() {
   return process.env.ADMIN_SESSION_SECRET || getAdminPassword() || "ncas-default-admin-secret"
 }
@@ -27,6 +31,19 @@ export function verifyAdminPassword(candidate: string) {
   }
 
   const a = Buffer.from(candidate)
+  const b = Buffer.from(expected)
+  if (a.length !== b.length) {
+    return false
+  }
+
+  return timingSafeEqual(a, b)
+}
+
+export function verifyAdminEmail(candidate: string) {
+  const expected = getAdminEmail()
+  const normalizedCandidate = candidate.toLowerCase()
+
+  const a = Buffer.from(normalizedCandidate)
   const b = Buffer.from(expected)
   if (a.length !== b.length) {
     return false
