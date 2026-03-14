@@ -5,6 +5,10 @@ function isIgnoredSegment(segment: string) {
   return segment.startsWith("(") || segment.startsWith("@")
 }
 
+function isDynamicSegment(segment: string) {
+  return segment.startsWith("[") && segment.endsWith("]")
+}
+
 export async function getEditableSiteRoutes() {
   const appDir = path.join(process.cwd(), "app")
   const routes = new Set<string>()
@@ -34,6 +38,9 @@ export async function getEditableSiteRoutes() {
       }
 
       const cleanSegments = segments.filter((segment) => !isIgnoredSegment(segment))
+      if (cleanSegments.some(isDynamicSegment)) {
+        continue
+      }
       const route = `/${cleanSegments.join("/")}`.replace(/\/+/g, "/")
       routes.add(route === "/" ? "/" : route.replace(/\/$/, ""))
     }
