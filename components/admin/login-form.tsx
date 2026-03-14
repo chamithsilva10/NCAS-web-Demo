@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 
 export function AdminLoginForm() {
   const router = useRouter()
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +25,7 @@ export function AdminLoginForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ email, password }),
       })
 
       if (!response.ok) {
@@ -48,6 +49,19 @@ export function AdminLoginForm() {
       </CardHeader>
       <CardContent>
         <form onSubmit={onSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="admin-email">Admin Email</Label>
+            <Input
+              id="admin-email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="Enter admin email"
+              required
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="admin-password">Admin Password</Label>
             <Input
