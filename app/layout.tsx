@@ -4,8 +4,10 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { headers } from "next/headers"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { CmsPageOverride } from "@/components/cms/page-override"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -19,14 +21,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = headers().get("x-pathname") || "/"
+  const isAdminRoute = pathname.startsWith("/admin")
+
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Header />
-        <div className="pt-20">
-          <Suspense fallback={null}>{children}</Suspense>
+        {!isAdminRoute ? <Header /> : null}
+        <div className={isAdminRoute ? "" : "pt-20"}>
+          <Suspense fallback={null}>
+            <CmsPageOverride pathname={pathname} disabled={isAdminRoute}>
+              {children}
+            </CmsPageOverride>
+          </Suspense>
         </div>
-        <Footer />
+        {!isAdminRoute ? <Footer /> : null}
         <Analytics />
       </body>
     </html>
