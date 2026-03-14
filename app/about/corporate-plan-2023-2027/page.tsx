@@ -108,7 +108,7 @@ export default function CorporatePlan2023Page() {
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               <Button variant="outline" size="sm" asChild>
-                <a href="/about/organizational-structure">Organizational Structure</a>
+                <a href="/about/structure">Organizational Structure</a>
               </Button>
               <Button variant="outline" size="sm" asChild>
                 <a href="/about/vision-mission">Vision & Mission</a>
