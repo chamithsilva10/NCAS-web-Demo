@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { adminSlugToRoutePath } from "@/lib/admin-route-path"
 import { requireAdminSession } from "@/lib/admin-session"
 import { getCmsPageByPathForAdmin } from "@/lib/cms"
-import { getEditableSiteRoutes } from "@/lib/site-routes"
+import { isEditableCmsRoute } from "@/lib/site-routes"
 
 type PageProps = {
   params: {
@@ -18,9 +18,8 @@ export default async function AdminRouteEditorPage({ params }: PageProps) {
   requireAdminSession()
 
   const routePath = adminSlugToRoutePath(params.slug || [])
-  const editableRoutes = await getEditableSiteRoutes()
 
-  if (!editableRoutes.includes(routePath)) {
+  if (!isEditableCmsRoute(routePath)) {
     notFound()
   }
 
