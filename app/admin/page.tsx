@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AdminLogoutButton } from "@/components/admin/logout-button"
+import { CreateRouteForm } from "@/components/admin/create-route-form"
 import { routePathToAdminSlug } from "@/lib/admin-route-path"
 import { requireAdminSession } from "@/lib/admin-session"
 import { listCmsPagesForAdmin } from "@/lib/cms"
@@ -11,7 +12,10 @@ import { getEditableSiteRoutes } from "@/lib/site-routes"
 export default async function AdminDashboardPage() {
   requireAdminSession()
 
-  const [routes, pages] = await Promise.all([getEditableSiteRoutes(), listCmsPagesForAdmin()])
+  const [discoveredRoutes, pages] = await Promise.all([getEditableSiteRoutes(), listCmsPagesForAdmin()])
+  const routes = Array.from(new Set([...discoveredRoutes, ...pages.map((page) => page.path)])).sort((a, b) =>
+    a.localeCompare(b),
+  )
   const pageMap = new Map(pages.map((page) => [page.path, page]))
 
   const publishedCount = pages.filter((page) => page.status === "published").length
@@ -57,6 +61,9 @@ export default async function AdminDashboardPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            <div className="mb-5 rounded-lg border bg-white p-4">
+              <CreateRouteForm />
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {routes.map((route) => {
                 const record = pageMap.get(route)
