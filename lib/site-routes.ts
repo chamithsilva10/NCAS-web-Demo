@@ -1,5 +1,7 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
+import { normalizeCmsPath } from "@/lib/admin-route-path"
+import { GENERATED_EDITABLE_ROUTES } from "@/lib/generated-editable-routes"
 
 function isIgnoredSegment(segment: string) {
   return segment.startsWith("(") || segment.startsWith("@")
@@ -7,6 +9,20 @@ function isIgnoredSegment(segment: string) {
 
 function isDynamicSegment(segment: string) {
   return segment.startsWith("[") && segment.endsWith("]")
+}
+
+export function isEditableCmsRoute(pathname: string) {
+  const normalized = normalizeCmsPath(pathname)
+
+  if (!normalized.startsWith("/")) {
+    return false
+  }
+
+  if (normalized.startsWith("/admin") || normalized.startsWith("/api") || normalized.startsWith("/_next")) {
+    return false
+  }
+
+  return true
 }
 
 export async function getEditableSiteRoutes() {
@@ -46,9 +62,19 @@ export async function getEditableSiteRoutes() {
     }
   }
 
-  await walk(appDir, [])
+  try {
+    await walk(appDir, [])
+  } catch {
+    // In some production/serverless runtimes the source app directory is not readable.
+  }
+
+  if (!routes.size) {
+    for (const route of GENERATED_EDITABLE_ROUTES) {
+      routes.add(route)
+    }
+  }
 
   return Array.from(routes)
-    .filter((route) => !route.startsWith("/admin"))
+    .filter((route) => isEditableCmsRoute(route))
     .sort((a, b) => a.localeCompare(b))
 }
