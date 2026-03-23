@@ -5,8 +5,8 @@ import { PageEditor } from "@/components/admin/page-editor"
 import { Button } from "@/components/ui/button"
 import { adminSlugToRoutePath } from "@/lib/admin-route-path"
 import { requireAdminSession } from "@/lib/admin-session"
+import { isEditableCmsRoute } from "@/lib/cms-route-utils"
 import { getCmsPageByPathForAdmin } from "@/lib/cms"
-import { isEditableCmsRoute } from "@/lib/site-routes"
 
 type PageProps = {
   params: {
