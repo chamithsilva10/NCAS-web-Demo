@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
-import { normalizeCmsPath } from "@/lib/admin-route-path"
+import { isEditableCmsRoute } from "@/lib/cms-route-utils"
 import { GENERATED_EDITABLE_ROUTES } from "@/lib/generated-editable-routes"
 
 function isIgnoredSegment(segment: string) {
@@ -9,20 +9,6 @@ function isIgnoredSegment(segment: string) {
 
 function isDynamicSegment(segment: string) {
   return segment.startsWith("[") && segment.endsWith("]")
-}
-
-export function isEditableCmsRoute(pathname: string) {
-  const normalized = normalizeCmsPath(pathname)
-
-  if (!normalized.startsWith("/")) {
-    return false
-  }
-
-  if (normalized.startsWith("/admin") || normalized.startsWith("/api") || normalized.startsWith("/_next")) {
-    return false
-  }
-
-  return true
 }
 
 export async function getEditableSiteRoutes() {
