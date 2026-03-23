@@ -24,6 +24,9 @@ export default async function AdminRouteEditorPage({ params }: PageProps) {
   }
 
   const existing = await getCmsPageByPathForAdmin(routePath)
+  const savedBuilder = existing?.content && Array.isArray((existing.content as { builder?: unknown }).builder)
+    ? ((existing.content as { builder?: unknown[] }).builder || [])
+    : undefined
 
   return (
     <main className="min-h-screen bg-slate-50 p-6 md:p-8">
@@ -48,6 +51,7 @@ export default async function AdminRouteEditorPage({ params }: PageProps) {
             seoDescription: existing?.seo_description || "",
             status: existing?.status || "draft",
             html: existing?.content?.html || "",
+            builder: savedBuilder,
           }}
         />
       </div>
