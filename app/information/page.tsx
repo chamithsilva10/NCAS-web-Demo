@@ -39,7 +39,7 @@ export default function InformationPage() {
       date: "6/20/2025",
       title: "7th International Research Symposium in Humanities and Social Sciences (IRSHSS) 2025",
       description: "AI in Higher Education: Prospects and Challenges - October 30th-31st, 2025.",
-      link: "/information/symposium-2024"
+      link: "/information/symposium-2025"
     }
   ]
 
