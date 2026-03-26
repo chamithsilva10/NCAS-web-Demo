@@ -14,6 +14,8 @@
 
 const { createClient } = require("@supabase/supabase-js")
 const cheerio = require("cheerio")
+const fs = require("fs")
+const path = require("path")
 
 const BASE = "https://ncas.ac.lk"
 const API_BASE = `${BASE}/wp-json/wp/v2`
@@ -22,6 +24,35 @@ const DEFAULT_PER_PAGE = 100
 function getArg(name) {
   return process.argv.includes(name)
 }
+
+function loadLocalEnv() {
+  const envPath = path.join(process.cwd(), ".env.local")
+  if (!fs.existsSync(envPath)) return
+
+  const content = fs.readFileSync(envPath, "utf8")
+  const lines = content.split(/\r?\n/)
+
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith("#")) continue
+
+    const sep = trimmed.indexOf("=")
+    if (sep === -1) continue
+
+    const key = trimmed.slice(0, sep).trim()
+    let value = trimmed.slice(sep + 1).trim()
+
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1)
+    }
+
+    if (!process.env[key]) {
+      process.env[key] = value
+    }
+  }
+}
+
+loadLocalEnv()
 
 function stripHtml(html) {
   return (html || "")
