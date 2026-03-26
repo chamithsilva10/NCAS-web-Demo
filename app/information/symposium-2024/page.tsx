@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, MapPin, Users, Award, Download, Clock, Globe, BookOpen, Camera } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Symposium2024Page() {
   const keynoteSpeakers = [
@@ -608,9 +609,11 @@ export default function Symposium2024Page() {
                   ))}
                 </div>
                 <div className="mt-6 text-center">
-                  <Button variant="outline">
-                    <Camera className="h-4 w-4 mr-2" />
-                    View All Photos
+                  <Button variant="outline" asChild>
+                    <Link href="/information/gallery/all/ncas-6th-international-research-symposium-2024-photos">
+                      <Camera className="h-4 w-4 mr-2" />
+                      View Full 2024 Gallery
+                    </Link>
                   </Button>
                 </div>
               </CardContent>
