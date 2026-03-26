@@ -34,18 +34,13 @@ const categoryConfig = [
     ],
   },
   {
-    title: "Workshops & Training",
-    description: "Training workshops and capacity building programs",
+    title: "Academic Celebrations",
+    description: "Centenary and institutional celebration photo collections",
     slugs: ["centenary-year-celebrations-of-humanities-and-social-sciences-photos"],
   },
   {
-    title: "Graduation Ceremonies",
-    description: "PhD and MPhil graduation ceremonies and celebrations",
-    slugs: ["centenary-year-celebrations-of-humanities-and-social-sciences-photos"],
-  },
-  {
-    title: "International Collaborations",
-    description: "Meetings and events with international partners",
+    title: "Council Meetings",
+    description: "Council of Regents and Council of Management event galleries",
     slugs: [
       "20th-council-of-regent-took-place-at-the-3rd-floor-board-room-of-the-ministry-of-education",
       "cor-meetinfg-10-10-2024",
@@ -55,28 +50,28 @@ const categoryConfig = [
 
 const recentEventConfig = [
   {
+    slug: "7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos",
+    title: "7th International Research Symposium 2025",
+    date: "2025",
+    participants: 300,
+    photos: 146,
+    description: "IRSHSS 2025 official gallery with keynote, sessions, and closing ceremony highlights.",
+  },
+  {
+    slug: "ncas-6th-international-research-symposium-2024-photos",
+    title: "6th International Research Symposium 2024",
+    date: "2024",
+    participants: 250,
+    photos: 224,
+    description: "Large photo collection from IRSHSS 2024 with plenaries, panels, and networking sessions.",
+  },
+  {
     slug: "ncas-5th-international-research-symposium-2023",
     title: "5th International Research Symposium 2023",
-    date: "November 29, 2023",
-    participants: 150,
-    photos: 24,
-    description: "Heritage and Culture: Re-visiting the late Professor Senake Dias Bandaranayake",
-  },
-  {
-    slug: "centenary-year-celebrations-of-humanities-and-social-sciences-photos",
-    title: "Workshop on Digital Humanities",
-    date: "October 15, 2023",
-    participants: 35,
-    photos: 18,
-    description: "Hands-on training in digital research methodologies",
-  },
-  {
-    slug: "7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos",
-    title: "PhD Graduation Ceremony 2023",
-    date: "September 20, 2023",
-    participants: 25,
-    photos: 32,
-    description: "Celebrating our newest PhD graduates",
+    date: "2023",
+    participants: 200,
+    photos: 102,
+    description: "IRSHSS 2023 sessions and event moments captured across the full symposium program.",
   },
 ] as const
 
@@ -124,6 +119,7 @@ export default async function GalleryPage() {
     return {
       ...event,
       image,
+      photos: images.length || event.photos,
       href: `/information/gallery/all/${encodeURIComponent(event.slug)}`,
     }
   })
@@ -140,15 +136,15 @@ export default async function GalleryPage() {
             </p>
             <div className="flex items-center justify-center gap-8 text-primary-foreground/90">
               <div className="text-center">
-                <div className="text-2xl font-bold">500+</div>
+                <div className="text-2xl font-bold">{allImageUrls.length}+</div>
                 <div className="text-sm">Photos</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">50+</div>
+                <div className="text-2xl font-bold">{Object.keys(summary).length}</div>
                 <div className="text-sm">Events</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">5</div>
+                <div className="text-2xl font-bold">10+</div>
                 <div className="text-sm">Years</div>
               </div>
             </div>
