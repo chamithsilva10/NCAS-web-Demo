@@ -256,9 +256,11 @@ export default function Symposium2023Page() {
               <Download className="h-6 w-6 mb-2" />
               <span className="text-sm">Proceedings</span>
             </Button>
-            <Button variant="outline" className="h-auto p-4 flex-col">
-              <Download className="h-6 w-6 mb-2" />
-              <span className="text-sm">Photo Album</span>
+            <Button variant="outline" className="h-auto p-4 flex-col" asChild>
+              <Link href="/information/gallery/all/ncas-5th-international-research-symposium-2023">
+                <Download className="h-6 w-6 mb-2" />
+                <span className="text-sm">Photo Album</span>
+              </Link>
             </Button>
           </div>
         </div>
