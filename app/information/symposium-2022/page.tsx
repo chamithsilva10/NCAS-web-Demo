@@ -100,9 +100,11 @@ export default function Symposium2022Page() {
                 ))}
               </div>
               <div className="mt-4 text-center">
-                <Button variant="outline" size="sm">
-                  <Camera className="h-4 w-4 mr-2" />
-                  View All Photos ({photoGallery.length}+)
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/information/gallery/all/ncas-4th-international-research-symposium-2022-photos">
+                    <Camera className="h-4 w-4 mr-2" />
+                    View All Photos ({photoGallery.length}+)
+                  </Link>
                 </Button>
               </div>
             </CardContent>
