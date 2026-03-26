@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "sync:ncas:dry": "node scripts/sync-ncas-content-to-cms.js --dry-run",
+    "sync:ncas": "node scripts/sync-ncas-content-to-cms.js --apply"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",
