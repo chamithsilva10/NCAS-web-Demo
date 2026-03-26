@@ -142,7 +142,7 @@ export default function Symposium2025Page() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="gap-2 text-white border-white hover:bg-white/20" asChild>
-                <Link href="/information/gallery/all/symposium-2025">
+                <Link href="/information/gallery/all/7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos">
                   <Play className="h-5 w-5" />
                   Photos & Videos
                 </Link>
