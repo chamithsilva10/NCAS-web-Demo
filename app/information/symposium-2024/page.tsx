@@ -73,6 +73,7 @@ export default function Symposium2024Page() {
     { category: "Students (International)", earlyBird: "USD 25", regular: "USD 35" },
   ]
 
+  // This is a curated preview set; the full album is available via the gallery route button.
   const photoGallery = [
     { src: "/symposium-2024/MG_0087-1024x960.jpg", alt: "Opening ceremony", caption: "Inaugural session with keynote speakers" },
     { src: "/symposium-2024/MG_0090-1024x687.jpg", alt: "Panel discussion", caption: "Interactive panel on heritage and identity" },
