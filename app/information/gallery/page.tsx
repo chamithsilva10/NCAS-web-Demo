@@ -79,6 +79,7 @@ export default async function GalleryPage() {
   const summary = await readSummary()
   const base = path.resolve(process.cwd(), 'downloaded-galleries')
 
+  // Convert local filesystem paths to API URLs that can be safely rendered by the browser.
   const allImageUrls = Object.values(summary)
     .flatMap((entry) => entry.images || [])
     .map((img) => {
