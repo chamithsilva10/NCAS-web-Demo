@@ -25,6 +25,7 @@ const highlights = [
   "Publication opportunities in indexed journals"
 ]
 
+// Each section shows representative images while the full set lives in the dedicated gallery page.
 const photoGalleries = [
   {
     title: "Opening Ceremony",
