@@ -72,6 +72,7 @@ function main() {
     const entry = data[k]
     let imgs = processGallery(entry)
     if (minWidth > 0) {
+      // 2019 set contains older low-resolution originals, so use a softer minimum width.
       const galleryMinWidth = k === 'ncas_symposium_gallery_2019' ? Math.min(minWidth, 500) : minWidth
       imgs = imgs.filter(img => {
         const rel = path.relative(ROOT, img.file)
