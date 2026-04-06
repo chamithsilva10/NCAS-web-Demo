@@ -141,6 +141,7 @@ export default function Symposium2025Page() {
                   View Proceedings
                 </Link>
               </Button>
+              {/* Link directly to the imported 2025 gallery slug to keep photos in sync with downloads. */}
               <Button size="lg" variant="outline" className="gap-2 text-white border-white hover:bg-white/20" asChild>
                 <Link href="/information/gallery/all/7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos">
                   <Play className="h-5 w-5" />
