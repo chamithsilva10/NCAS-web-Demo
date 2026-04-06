@@ -39,6 +39,7 @@ export async function GET(req: NextRequest) {
     return new Response(stream, {
       headers: {
         'content-type': contentType,
+        // Cache media responses for one day to reduce repeated disk reads.
         'cache-control': 'public, max-age=86400',
       },
     })
