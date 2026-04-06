@@ -24,6 +24,7 @@ const highlights = [
   "Policy recommendations for post-pandemic development"
 ]
 
+// Keep this list small for page performance; users can open the full 2022 gallery from the CTA.
 const photoGallery = [
   { src: "/symposium-2022/DSC_5928-1024x678.jpg", alt: "Opening ceremony", caption: "Inaugural session and welcome address" },
   { src: "/symposium-2022/DSC_5935-1024x678.jpg", alt: "Keynote speech", caption: "International scholar delivering keynote address" },
