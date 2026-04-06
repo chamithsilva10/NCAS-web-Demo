@@ -25,6 +25,7 @@ function getArg(name) {
   return process.argv.includes(name)
 }
 
+// Reuse local project env values so script runs the same way in terminal and CI pulls.
 function loadLocalEnv() {
   const envPath = path.join(process.cwd(), ".env.local")
   if (!fs.existsSync(envPath)) return
