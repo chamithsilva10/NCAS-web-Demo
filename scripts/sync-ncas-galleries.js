@@ -7,6 +7,7 @@ const { URL } = require('url')
 const crypto = require('crypto')
 const cheerio = require('cheerio')
 
+// Source pages that currently hold NCAS gallery/event photo collections.
 const topicPages = [
   'https://ncas.ac.lk/7th-international-research-symposium-in-humanities-and-social-sciences-irshss-2025-photos/',
   'https://ncas.ac.lk/ncas-6th-international-research-symposium-2024-photos/',
