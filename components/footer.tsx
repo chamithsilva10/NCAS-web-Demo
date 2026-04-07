@@ -83,6 +83,14 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/nca-hub"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
+                  NCA Hub
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -129,6 +137,26 @@ export function Footer() {
                 >
                   Guidelines
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://ncas.ac.lk/register/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
+                  Official Apply Page
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://ncas.ac.lk/library/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
+                  Official Library
+                </a>
               </li>
             </ul>
           </div>
