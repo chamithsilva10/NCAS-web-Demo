@@ -13,6 +13,50 @@ export type NcaLinkCategory = {
   items: NcaLinkItem[]
 }
 
+const NCAS_LOCAL_OVERRIDES: Record<string, string> = {
+  "/symposium2022/": "/information/symposium-2022",
+  "/symposium2023/": "/information/symposium-2023",
+  "/symposium2024/": "/information/symposium-2024",
+  "/symposium2025/": "/information/symposium-2025",
+  "/home-2/contact-us/": "/contact",
+  "/publication/": "/publications",
+  "/journal/": "/library/journal",
+  "/cor/": "/about/council-regents",
+  "/com/": "/about/council-management",
+  "/grantees/": "/grants/grantees",
+  "/qut/": "/grants/qut-scholarships",
+}
+
+export function mapNcasUrlToLocalHref(href: string): string | null {
+  if (!href) return null
+
+  if (href.startsWith("/")) return href
+
+  try {
+    const u = new URL(href)
+    const host = u.hostname.toLowerCase()
+
+    if (!host.includes("ncas.ac.lk")) {
+      return null
+    }
+
+    const normalizedPath = u.pathname.endsWith("/") ? u.pathname : `${u.pathname}/`
+    if (NCAS_LOCAL_OVERRIDES[normalizedPath]) {
+      return NCAS_LOCAL_OVERRIDES[normalizedPath]
+    }
+
+    if (normalizedPath.startsWith("/wp-content/uploads/")) {
+      const filename = normalizedPath.split("/").filter(Boolean).pop()
+      return filename ? `/downloads/${filename}` : null
+    }
+
+    const localPath = u.pathname.replace(/\/$/, "") || "/"
+    return localPath
+  } catch {
+    return null
+  }
+}
+
 export const NCA_LINK_CATEGORIES: NcaLinkCategory[] = [
   {
     key: "academic",
