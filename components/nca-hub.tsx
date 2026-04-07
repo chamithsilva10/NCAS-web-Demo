@@ -6,7 +6,6 @@ import {
   BookOpen,
   Compass,
   Download,
-  ExternalLink,
   GraduationCap,
   Info,
   Megaphone,
@@ -18,7 +17,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { NCA_FALLBACK_UPDATES, NCA_LINK_CATEGORIES, NCA_QUICK_ACCESS } from "@/lib/nca-hub-data"
+import { mapNcasUrlToLocalHref, NCA_FALLBACK_UPDATES, NCA_LINK_CATEGORIES, NCA_QUICK_ACCESS } from "@/lib/nca-hub-data"
 
 type UpdateItem = {
   title: string
@@ -113,16 +112,13 @@ export function NcaHub() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {NCA_QUICK_ACCESS.slice(0, 4).map((item) => (
-                  <a
+                  <Link
                     key={item.title}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
+                    href={item.localHref || mapNcasUrlToLocalHref(item.href) || "/nca-hub"}
                     className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow"
                   >
                     {item.title}
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -158,17 +154,9 @@ export function NcaHub() {
                   <CardDescription>{item.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-wrap gap-2">
-                  <a href={item.href} target="_blank" rel="noreferrer">
-                    <Button size="sm" variant="outline" className="gap-1">
-                      Open NCAS
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </Button>
-                  </a>
-                  {item.localHref ? (
-                    <Link href={item.localHref}>
-                      <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700">Open Here</Button>
-                    </Link>
-                  ) : null}
+                  <Link href={item.localHref || mapNcasUrlToLocalHref(item.href) || "/nca-hub"}>
+                    <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700">Open</Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -197,17 +185,9 @@ export function NcaHub() {
                         </div>
                         <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                         <div className="mt-3 flex flex-wrap gap-2">
-                          <a href={item.href} target="_blank" rel="noreferrer" className="inline-flex">
-                            <Button size="sm" variant="outline" className="gap-1">
-                              Open NCAS Link
-                              <ExternalLink className="h-3.5 w-3.5" />
-                            </Button>
-                          </a>
-                          {item.localHref ? (
-                            <Link href={item.localHref} className="inline-flex">
-                              <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700">Open Local Page</Button>
-                            </Link>
-                          ) : null}
+                          <Link href={item.localHref || mapNcasUrlToLocalHref(item.href) || "/nca-hub"} className="inline-flex">
+                            <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700">Open Page</Button>
+                          </Link>
                         </div>
                       </div>
                     ))}
@@ -238,18 +218,20 @@ export function NcaHub() {
                     <p className="mt-1 line-clamp-2 text-xs text-slate-600">{update.description}</p>
                     <div className="mt-2 flex items-center justify-between">
                       <span className="text-xs text-slate-500">{formatDate(update.date)}</span>
-                      <a href={update.href} target="_blank" rel="noreferrer" className="text-xs font-medium text-blue-700 hover:text-blue-900">
+                      <Link
+                        href={mapNcasUrlToLocalHref(update.href) || "/news"}
+                        className="text-xs font-medium text-blue-700 hover:text-blue-900"
+                      >
                         Read More
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 ))}
-                <a href="https://ncas.ac.lk/" target="_blank" rel="noreferrer" className="block">
+                <Link href="/news" className="block">
                   <Button variant="outline" className="w-full gap-2">
                     View All Updates
-                    <ExternalLink className="h-4 w-4" />
                   </Button>
-                </a>
+                </Link>
                 {loadingUpdates ? <p className="text-center text-xs text-slate-400">Loading live updates...</p> : null}
               </CardContent>
             </Card>
@@ -259,7 +241,7 @@ export function NcaHub() {
                 <CardTitle className="text-lg">Integration Notes</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm text-slate-600">
-                <p>All external links are configured to open in a new tab.</p>
+                <p>Hub actions route users through local pages where cloned/synced content is available.</p>
                 <p>Link definitions are centralized in one data module for easy future updates.</p>
                 <p>Latest updates are dynamic with a static fallback for reliability.</p>
               </CardContent>
