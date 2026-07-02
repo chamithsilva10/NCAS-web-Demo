@@ -3,23 +3,16 @@
 ## 1. Configure Environment Variables
 Copy `.env.local.example` to `.env.local` and set values:
 
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (or `NEXT_PUBLIC_SUPABASE_ANON_KEY`)
-- `SUPABASE_SECRET_KEY` (or `SUPABASE_SERVICE_ROLE_KEY`)
+- `DATABASE_URL`
+- `DATABASE_SSL` (set to `true` for hosted PostgreSQL with SSL)
 - `ADMIN_DASHBOARD_EMAIL`
 - `ADMIN_DASHBOARD_PASSWORD`
 - `ADMIN_SESSION_SECRET`
 
-## 1.1 Enable Supabase OAuth Server (Dashboard)
-In Supabase Auth settings:
+## 2. Create CMS Table in PostgreSQL
+Run SQL from [supabase/database.sql](supabase/database.sql) against your PostgreSQL database.
 
-- Enable OAuth server functionality
-- Set Site URL (for local dev use `http://localhost:3000`)
-- Set Authorization Path to `/oauth/consent`
-- Optional: enable dynamic OAuth app registration if needed
-
-## 2. Create CMS Table in Supabase
-Run SQL from [supabase/database.sql](supabase/database.sql) in Supabase SQL Editor.
+If you are using local Postgres, connect with `psql` or your SQL client and run the script there.
 
 ## 3. Start the App
 ```bash
@@ -36,5 +29,5 @@ npm run dev
 - You can publish/unpublish each route independently from admin.
 
 ## Notes
-- Admin write operations require `SUPABASE_SECRET_KEY` (or legacy `SUPABASE_SERVICE_ROLE_KEY`).
-- Public page reads use `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (or legacy `NEXT_PUBLIC_SUPABASE_ANON_KEY`) with RLS policy for published pages only.
+- Admin and public CMS reads use the PostgreSQL connection in `DATABASE_URL`.
+- Public page overrides only render when a `published` row exists in `public.cms_pages`.
