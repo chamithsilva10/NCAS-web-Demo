@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
 /*
-  Syncs public content from https://ncas.ac.lk WordPress API into Supabase cms_pages.
+  Syncs public content from https://ncas.ac.lk WordPress API into PostgreSQL cms_pages.
 
   Usage:
     node scripts/sync-ncas-content-to-cms.js --dry-run
     node scripts/sync-ncas-content-to-cms.js --apply
 
   Required env:
-    NEXT_PUBLIC_SUPABASE_URL
-    SUPABASE_SECRET_KEY (or SUPABASE_SERVICE_ROLE_KEY)
+    DATABASE_URL
+    DATABASE_SSL=true if your hosted PostgreSQL requires SSL
 */
 
-const { createClient } = require("@supabase/supabase-js")
+const { Pool } = require("pg")
 const cheerio = require("cheerio")
 const fs = require("fs")
 const path = require("path")
@@ -222,11 +222,10 @@ function mapWpToCmsRecord(item, kind) {
 async function main() {
   const isDryRun = getArg("--dry-run") || !getArg("--apply")
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const supabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
+  const databaseUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL
 
-  if (!isDryRun && (!supabaseUrl || !supabaseKey)) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY/SUPABASE_SERVICE_ROLE_KEY")
+  if (!isDryRun && !databaseUrl) {
+    throw new Error("Missing DATABASE_URL or POSTGRES_URL")
   }
 
   console.log(`Mode: ${isDryRun ? "DRY RUN" : "APPLY"}`)
@@ -282,24 +281,54 @@ async function main() {
     return
   }
 
-  const supabase = createClient(supabaseUrl, supabaseKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
+  const sslEnabled = /^(1|true|yes)$/i.test(process.env.DATABASE_SSL || process.env.POSTGRES_SSL || "")
+  const pool = new Pool({
+    connectionString: databaseUrl,
+    ssl: sslEnabled ? { rejectUnauthorized: false } : undefined,
+    max: Number(process.env.DATABASE_POOL_MAX || 10),
   })
 
   const chunkSize = 100
   let imported = 0
 
-  for (let i = 0; i < payload.length; i += chunkSize) {
-    const chunk = payload.slice(i, i + chunkSize)
-    const { error } = await supabase.from("cms_pages").upsert(chunk, { onConflict: "path" })
-    if (error) {
-      throw new Error(`Upsert failed at chunk ${i / chunkSize + 1}: ${error.message}`)
-    }
-    imported += chunk.length
-    console.log(`Imported ${imported}/${payload.length}`)
-  }
+  try {
+    for (let i = 0; i < payload.length; i += chunkSize) {
+      const chunk = payload.slice(i, i + chunkSize)
+      const values = []
+      const placeholders = chunk
+        .map((record, index) => {
+          const offset = index * 5
+          values.push(
+            record.path,
+            record.title || null,
+            record.seo_description || null,
+            record.status,
+            JSON.stringify(record.content || {}),
+          )
+          return `($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5}::jsonb)`
+        })
+        .join(", ")
 
-  console.log("Sync completed successfully.")
+      const sql = `
+        insert into public.cms_pages (path, title, seo_description, status, content)
+        values ${placeholders}
+        on conflict (path) do update
+        set
+          title = excluded.title,
+          seo_description = excluded.seo_description,
+          status = excluded.status,
+          content = excluded.content
+      `
+
+      await pool.query(sql, values)
+      imported += chunk.length
+      console.log(`Imported ${imported}/${payload.length}`)
+    }
+
+    console.log("Sync completed successfully.")
+  } finally {
+    await pool.end()
+  }
 }
 
 main().catch((error) => {
