@@ -19,7 +19,7 @@ In Supabase Auth settings:
 - Optional: enable dynamic OAuth app registration if needed
 
 ## 2. Create CMS Table in Supabase
-Run SQL from `supabase/cms-schema.sql` in Supabase SQL Editor.
+Run SQL from [supabase/database.sql](supabase/database.sql) in Supabase SQL Editor.
 
 ## 3. Start the App
 ```bash
