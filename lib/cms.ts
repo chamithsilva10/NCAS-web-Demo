@@ -1,5 +1,5 @@
-import { createSupabaseAdminServerClient, createSupabasePublicServerClient } from "@/lib/supabase"
 import { normalizeCmsPath } from "@/lib/admin-route-path"
+import { hasDatabaseConfig, queryDatabase } from "@/lib/postgres"
 
 export type CmsPageRecord = {
   id: string
@@ -7,10 +7,13 @@ export type CmsPageRecord = {
   title: string | null
   seo_description: string | null
   status: "draft" | "published"
-  content: {
-    html?: string
-  } | null
+  content: CmsPageContent | null
   updated_at: string
+}
+
+export type CmsPageContent = {
+  html?: string
+  [key: string]: unknown
 }
 
 export type CmsPageInput = {
@@ -18,66 +21,64 @@ export type CmsPageInput = {
   title?: string | null
   seo_description?: string | null
   status: "draft" | "published"
-  content?: {
-    html?: string
-  }
+  content?: CmsPageContent
 }
 
 export async function getPublishedCmsPage(pathname: string): Promise<CmsPageRecord | null> {
-  const supabase = createSupabasePublicServerClient()
-  if (!supabase) {
+  if (!hasDatabaseConfig()) {
     return null
   }
 
   const normalized = normalizeCmsPath(pathname)
-  const { data, error } = await supabase
-    .from("cms_pages")
-    .select("id,path,title,seo_description,status,content,updated_at")
-    .eq("path", normalized)
-    .eq("status", "published")
-    .maybeSingle<CmsPageRecord>()
+  const { rows } = await queryDatabase<CmsPageRecord>(
+    `
+      select id, path, title, seo_description, status, content, updated_at
+      from public.cms_pages
+      where path = $1 and status = 'published'
+      limit 1
+    `,
+    [normalized],
+  )
 
-  if (error) {
-    return null
-  }
-
-  return data
+  return rows[0] || null
 }
 
 export async function getCmsPageByPathForAdmin(pathname: string): Promise<CmsPageRecord | null> {
-  const supabase = createSupabaseAdminServerClient()
-  if (!supabase) {
+  if (!hasDatabaseConfig()) {
     return null
   }
 
   const normalized = normalizeCmsPath(pathname)
-  const { data } = await supabase
-    .from("cms_pages")
-    .select("id,path,title,seo_description,status,content,updated_at")
-    .eq("path", normalized)
-    .maybeSingle<CmsPageRecord>()
+  const { rows } = await queryDatabase<CmsPageRecord>(
+    `
+      select id, path, title, seo_description, status, content, updated_at
+      from public.cms_pages
+      where path = $1
+      limit 1
+    `,
+    [normalized],
+  )
 
-  return data
+  return rows[0] || null
 }
 
 export async function listCmsPagesForAdmin(): Promise<CmsPageRecord[]> {
-  const supabase = createSupabaseAdminServerClient()
-  if (!supabase) {
+  if (!hasDatabaseConfig()) {
     return []
   }
 
-  const { data } = await supabase
-    .from("cms_pages")
-    .select("id,path,title,seo_description,status,content,updated_at")
-    .order("updated_at", { ascending: false })
+  const { rows } = await queryDatabase<CmsPageRecord>(`
+    select id, path, title, seo_description, status, content, updated_at
+    from public.cms_pages
+    order by updated_at desc
+  `)
 
-  return (data as CmsPageRecord[] | null) || []
+  return rows
 }
 
 export async function upsertCmsPageForAdmin(input: CmsPageInput) {
-  const supabase = createSupabaseAdminServerClient()
-  if (!supabase) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY is not configured")
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_URL is not configured")
   }
 
   const payload = {
@@ -88,15 +89,20 @@ export async function upsertCmsPageForAdmin(input: CmsPageInput) {
     content: input.content || {},
   }
 
-  const { data, error } = await supabase
-    .from("cms_pages")
-    .upsert(payload, { onConflict: "path" })
-    .select("id,path,title,seo_description,status,content,updated_at")
-    .single<CmsPageRecord>()
+  const { rows } = await queryDatabase<CmsPageRecord>(
+    `
+      insert into public.cms_pages (path, title, seo_description, status, content)
+      values ($1, $2, $3, $4, $5::jsonb)
+      on conflict (path) do update
+      set
+        title = excluded.title,
+        seo_description = excluded.seo_description,
+        status = excluded.status,
+        content = excluded.content
+      returning id, path, title, seo_description, status, content, updated_at
+    `,
+    [payload.path, payload.title, payload.seo_description, payload.status, JSON.stringify(payload.content)],
+  )
 
-  if (error) {
-    throw new Error(error.message)
-  }
-
-  return data
+  return rows[0]
 }
