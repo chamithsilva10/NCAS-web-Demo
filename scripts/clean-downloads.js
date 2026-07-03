@@ -57,7 +57,10 @@ function processGallery(gallery) {
       groups.set(key, { chosen: img, rel, abs, area })
     }
   }
-  const cleaned = Array.from(groups.values()).map(g => g.chosen)
+  const cleaned = Array.from(groups.values()).map(g => ({
+    ...g.chosen,
+    file: g.rel,
+  }))
   return cleaned
 }
 
