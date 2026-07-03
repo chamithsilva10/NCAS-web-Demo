@@ -181,6 +181,10 @@ function safeFilenameFromUrl(url) {
   return `${name || 'image'}${ext}`
 }
 
+function toStoredRelativePath(filePath) {
+  return path.relative(root, filePath)
+}
+
 async function downloadIfNeeded(url, outDir, usedNames) {
   const baseName = safeFilenameFromUrl(url)
   let outFile = path.join(outDir, baseName)
@@ -222,7 +226,7 @@ async function syncPage(pageUrl, summary) {
       process.stdout.write(`  downloading ${imgUrl} ... `)
       const res = await downloadIfNeeded(imgUrl, outDir, usedNames)
       console.log(res.status)
-      imageEntries.push({ url: imgUrl, file: res.file, status: res.status })
+      imageEntries.push({ url: imgUrl, file: toStoredRelativePath(res.file), status: res.status })
       await sleep(120)
     } catch (e) {
       console.log('error')

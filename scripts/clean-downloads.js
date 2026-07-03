@@ -42,12 +42,20 @@ function getDimensions(abs) {
   return null
 }
 
+function resolveGalleryFile(file) {
+  if (!file) return null
+  if (path.isAbsolute(file)) {
+    return path.relative(ROOT, file)
+  }
+  return file
+}
+
 function processGallery(gallery) {
   const images = gallery.images || []
   const groups = new Map()
   for (const img of images) {
     if (!img.file) continue
-    const rel = path.relative(ROOT, img.file)
+    const rel = resolveGalleryFile(img.file)
     const key = canonicalKey(rel)
     const abs = path.resolve(ROOT, rel)
     const dim = fs.existsSync(abs) ? getDimensions(abs) : null
@@ -78,7 +86,7 @@ function main() {
       // 2019 set contains older low-resolution originals, so use a softer minimum width.
       const galleryMinWidth = k === 'ncas_symposium_gallery_2019' ? Math.min(minWidth, 500) : minWidth
       imgs = imgs.filter(img => {
-        const rel = path.relative(ROOT, img.file)
+        const rel = resolveGalleryFile(img.file)
         const abs = path.resolve(ROOT, rel)
         if (!fs.existsSync(abs)) return false
         const d = getDimensions(abs)
