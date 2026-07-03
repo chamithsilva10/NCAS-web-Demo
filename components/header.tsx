@@ -124,17 +124,6 @@ export function Header() {
         { name: "Prof. Shihan de Silva Jayasuriya", href: "/international/visiting-fellows/shihan-de-silva-jayasuriya" },
       ],
     },
-    {
-      name: "NCA Hub",
-      href: "/nca-hub",
-      submenu: [
-        { name: "All Direct Links", href: "/nca-hub" },
-        { name: "Programs & Courses", href: "/nca-hub?q=program" },
-        { name: "Admissions & Apply", href: "/nca-hub?q=apply" },
-        { name: "Latest Updates", href: "/nca-hub?q=update" },
-        { name: "Downloads & Resources", href: "/nca-hub?q=resource" },
-      ],
-    },
   ]
 
   const handleDropdownToggle = (name: string) => {
