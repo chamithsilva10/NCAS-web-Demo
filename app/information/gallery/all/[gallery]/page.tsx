@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import GalleryClient from './client'
+import { galleryFileToRelativePath } from '@/lib/gallery-path'
 
 function prettyTitle(slug: string) {
   return slug
@@ -30,7 +31,7 @@ export default async function GalleryDetail({ params }: { params: { gallery: str
 
   // Prepare client-friendly image URLs
   const urls = imagesRaw.map(img => {
-    const rel = path.relative(path.resolve(process.cwd(), 'downloaded-galleries'), img.file)
+    const rel = galleryFileToRelativePath(img.file)
     return `/api/gallery?path=${encodeURIComponent(rel)}`
   })
 

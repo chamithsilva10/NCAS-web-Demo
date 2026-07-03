@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import Link from 'next/link'
+import { galleryFileToRelativePath } from '@/lib/gallery-path'
 
 function prettyTitle(slug: string) {
   return slug
@@ -37,7 +38,7 @@ export default async function AllGalleriesPage() {
             const images = summary[g].images || []
             const cover = images[0]
             const rel = cover?.file
-              ? path.relative(path.resolve(process.cwd(), 'downloaded-galleries'), cover.file)
+              ? galleryFileToRelativePath(cover.file)
               : null
 
             return (

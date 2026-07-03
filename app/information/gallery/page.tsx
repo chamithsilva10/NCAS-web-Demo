@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
+import { galleryFileToRelativePath } from '@/lib/gallery-path'
 
 type SummaryImage = { file?: string }
 type SummaryEntry = { images?: SummaryImage[] }
@@ -95,7 +96,7 @@ export default async function GalleryPage() {
     const imageUrls = images
       .map((img) => {
         if (!img.file) return null
-        const rel = path.relative(base, img.file)
+        const rel = galleryFileToRelativePath(img.file)
         return `/api/gallery?path=${encodeURIComponent(rel)}`
       })
       .filter(Boolean)
@@ -114,7 +115,7 @@ export default async function GalleryPage() {
     const images = summary[event.slug]?.images || []
     const first = images[0]
     const image = first?.file
-      ? `/api/gallery?path=${encodeURIComponent(path.relative(base, first.file))}`
+      ? `/api/gallery?path=${encodeURIComponent(galleryFileToRelativePath(first.file))}`
       : allImageUrls[0] || "/placeholder.svg"
 
     return {
