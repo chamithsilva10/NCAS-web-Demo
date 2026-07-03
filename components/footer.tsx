@@ -83,14 +83,6 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/nca-hub"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  NCA Hub
-                </Link>
-              </li>
             </ul>
           </div>
 
